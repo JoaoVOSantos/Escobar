@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
-import axios from 'axios'
+import React from 'react'
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import MenuPrincipal from './template/MenuPrincipal'
+
+
+
+const tema = createTheme({
+    palette: {
+        mode: 'dark',
+        primary:{
+            main: '#ff5252',
+        },
+    },
+})
 const App = () => {
-   
     return (
-        <div>
-            
-        </div>
+        <ThemeProvider theme={tema}>
+            <CssBaseline />
+            <MenuPrincipal />
+        </ThemeProvider>
     );
 };
 
