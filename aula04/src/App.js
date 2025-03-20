@@ -16,7 +16,7 @@ const App = () => {
             <p>Digite uma cor (em inglês)</p>
             <input type="text" onChange={(e) => setCor(e.target.value)}/>
             
-            < Filho texto={ valor } getCor={ getCor}/>
+            <Filho texto={ valor } getCor={ getCor}/>
         </div>
         
     )
