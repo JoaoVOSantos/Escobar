@@ -3,6 +3,7 @@ import React from 'react'
 import Dashboard from './components/dashboard'
 import Produtos from './components/produtos'
 import Pessoas from './components/pessoas'
+import Login from './components/login'
 
 import {BrowserRouter,
         Routes,
@@ -12,7 +13,7 @@ import {BrowserRouter,
         Outlet} from 'react-router-dom'
 
 const Middleware = () => {
-    var logado = true
+    var logado = localStorage.getItem("ALUNO_ITE")
 
     if (logado)
         return <Outlet/>
@@ -29,9 +30,15 @@ const App = () => {
                 <Link to="/pessoas">Pessoas</Link>
             </nav>
             <Routes>
-                <Route path='/' element={<Dashboard/>} />
-                <Route path='/produtos' element={<Produtos/>} />
-                <Route path='/pessoas' element={<Pessoas/>} />
+                <Route path='/login' element={<Login/>} />
+                {/*
+                    Middleware
+                */}
+                <Route element={<Middleware/>} >
+                    <Route path='/' element={<Dashboard/>} />
+                    <Route path='/produtos' element={<Produtos/>} />
+                    <Route path='/pessoas' element={<Pessoas/>} />
+                </Route>
             </Routes>
         </BrowserRouter>
     )
