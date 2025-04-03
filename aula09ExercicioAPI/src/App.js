@@ -3,6 +3,8 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import MenuPrincipal from './template/MenuPrincipal'
 import Cartao from './template/cartaopersonagem'
+
+
 const tema = createTheme({
     palette: {
         mode: 'dark',
