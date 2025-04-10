@@ -1,9 +1,9 @@
 //App.js
 import React from 'react'
-import Dashboard from './components/dashboard'
-import Produtos from './components/produtos'
-import Pessoas from './components/pessoas'
-import Login from './components/login'
+import Dashboard from '/components/dashboard'
+import Produtos from '/components/produtos'
+import Pessoas from '/components/pessoas'
+import Login from '/components/login'
 
 import {BrowserRouter,
         Routes,

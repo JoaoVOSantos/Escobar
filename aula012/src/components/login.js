@@ -22,6 +22,7 @@ const Login = () => {
                 return
             }
             if(retorno.data.token){
+                alert("Login efetuado com sucesso")
                 localStorage.setItem("ALUNO_ITE", retorno.data.token)
             }
         })
