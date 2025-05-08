@@ -7,7 +7,6 @@ const Produtos = () => {
     var [preco, setPreco] = useState('')
     var [categoria, setCategoria] = useState('')
     var [descricao, setDescricao] = useState('')
-    var [usuario, setUsuario] = useState('')
     var [imagem, setImagem] = useState('')
 
 
@@ -19,7 +18,6 @@ const Produtos = () => {
             preco: preco,
             categoria: categoria,
             descricao: descricao,
-            usuario: usuario,
             imagem: imagem
         }
         
@@ -46,13 +44,10 @@ const Produtos = () => {
         <div>
             <h1>Produtos</h1>
             <input type="text" placeholder="Nome do produto" onChange={(e) => setNome(e.target.value)} />
-            <input type="text" placeholder="Nome do usuario" onChange={(e) => setUsuario(e.target.value)} />
             <input type="number" placeholder="quantidade" onChange={(e) => setQuantidade(e.target.value)} />
             <input type="number" placeholder="preço" onChange={(e) => setPreco(e.target.value)} />
-
-            {/* Fazer puxando do banco */}
+            {/* Fazer puxando do backend */}
             <input type="text" placeholder="categoria" onChange={(e) => setCategoria(e.target.value)} />
-
             <input type="text" placeholder="descricao" onChange={(e) => setDescricao(e.target.value)} />
             <input type="text" placeholder="imagem" onChange={(e) => setImagem(e.target.value)} />
             <input type="button" value="Cadastrar Produto" onClick={() => cadastrarProduto()} />
