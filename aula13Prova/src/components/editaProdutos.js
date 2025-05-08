@@ -2,27 +2,41 @@ import React, { useState } from "react";
 import axios from "axios";
 
 
-const ListaProdutos = () => {
+const EditaProdutos = () => {
 
-    var [produtos, setProdutos] = useState([])
+    var [id, setId] = useState('')
+    var [nome, setNome] = useState('')
+    var [quantidade, setQuantidade] = useState('')
+    var [preco, setPreco] = useState('')
+    var [categoria, setCategoria] = useState('')
+    var [descricao, setDescricao] = useState('')
+    var [imagem, setImagem] = useState('')
 
-    const ListarProdutos = async () => {
+    const EditaProdutos = async () => {
         var url = "https://backend-completo.vercel.app/app/produtos"
-
+        var dados = {
+            id: id,
+            nome: nome,
+            quantidade: quantidade,
+            preco: preco,
+            categoria: categoria,
+            descricao: descricao,
+            imagem: imagem
+        }
         var token = localStorage.getItem("ALUNO_ITE")
 
-        await axios.get(
+        await axios.put(
             url,
+            dados,
             { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
             console.log(retorno)
-            if (retorno.data.error) {
-                alert(retorno.data.error)
+            if (retorno.data.erro) {
+                alert(retorno.data.erro)
                 return
             }
             if (retorno.status === 200) {
-                alert("Listagem de Produtos - sucesso.")
-                setProdutos(retorno.data)
+                alert("Edição de Produtos - sucesso.")
                 console.log(retorno)
             }
         })
@@ -30,43 +44,21 @@ const ListaProdutos = () => {
 
     return (
         <div>
-            <h1>Produtos</h1>
-
-            <input type="button" value="Listar Produtos" onClick={() => ListarProdutos()} />
-
-
-            <table border='1'>
-                <thead>
-                    <tr>
-                        <th>Nome do Produto</th>
-                        <th>usuario</th>
-                        <th>id</th>
-                        <th>Descrição</th>
-                        <th>imagem</th>
-                        <th>preço</th>
-                        <th>quantidade</th>
-                        <th>Editar</th>
-                        <th>Excluir</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {produtos.map((produto, indiceDoProduto) => (
-                        <tr key={indiceDoProduto}>
-                            <td>{produto.nome} </td>
-                            <td>{produto.usuario}</td>
-                            <td>{produto._id}</td>
-                            <td>{produto.descricao}</td>
-                            <td>{produto.imagem}</td>
-                            <td>{produto.preco}</td>
-                            <td>{produto.quantidade}</td>
-                            <td><input type="button" value="Editar" /></td>
-                            <td><input type="button" value="Excluir" /></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <h1>Editar Produtos</h1>
+            <div>
+                <h1>Produtos</h1>
+                <input type="text" placeholder="Id do Produto" onChange={(e) => setId(e.target.value)} />
+                <input type="text" placeholder="Nome do produto" onChange={(e) => setNome(e.target.value)} />
+                <input type="number" placeholder="quantidade" onChange={(e) => setQuantidade(e.target.value)} />
+                <input type="number" placeholder="preço" onChange={(e) => setPreco(e.target.value)} />
+                {/* Fazer puxando do backend */}
+                <input type="text" placeholder="categoria" onChange={(e) => setCategoria(e.target.value)} />
+                <input type="text" placeholder="descricao" onChange={(e) => setDescricao(e.target.value)} />
+                <input type="text" placeholder="imagem" onChange={(e) => setImagem(e.target.value)} />
+                <input type="button" value="Editar Produtos" onClick={() => EditaProdutos()} />
+            </div>
         </div>
     )
 }
 
-export default ListaProdutos
+export default EditaProdutos
