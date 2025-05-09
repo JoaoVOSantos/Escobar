@@ -30,7 +30,8 @@ const Login = () => {
 
     return(
         <div>
-            {/* falta template esta funcionando */}
+
+            
             <h1>Faça seu login</h1>
             <input type="text" placeholder="Usuario" onChange={(e) => setUsuario(e.target.value)}/>
             <input type="password" placeholder="Senha" onChange={(e) => setSenha(e.target.value)}/>
