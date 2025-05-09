@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Produtos = () => {
@@ -8,6 +8,32 @@ const Produtos = () => {
     var [categoria, setCategoria] = useState('')
     var [descricao, setDescricao] = useState('')
     var [imagem, setImagem] = useState('')
+
+    var [categorias, setCategorias] = useState([])
+
+    useEffect(() => {
+        listarCategoria();
+    }, []);
+
+    const listarCategoria = async () => {
+        var url = "https://backend-completo.vercel.app/app/categorias"
+
+        var token = localStorage.getItem("ALUNO_ITE")
+
+        await axios.get(
+            url,
+            { headers: { Authorization: `Bearer ${token}` } }
+        ).then(retorno => {
+            if (retorno.data.error) {
+                alert(retorno.data.error)
+                return
+            }
+            if (retorno.status === 200) {
+                setCategorias(retorno.data)
+                console.log(retorno)
+            }
+        })
+    }
 
 
     const cadastrarProduto = async () => {
@@ -20,15 +46,14 @@ const Produtos = () => {
             descricao: descricao,
             imagem: imagem
         }
-        
+
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.post(
             url,
             dados,
-            {headers: { Authorization: `Bearer ${token}` }}
+            { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
-            console.log(retorno)
             if (retorno.data.error) {
                 alert(retorno.data.error)
                 return
@@ -46,8 +71,14 @@ const Produtos = () => {
             <input type="text" placeholder="Nome do produto" onChange={(e) => setNome(e.target.value)} />
             <input type="number" placeholder="quantidade" onChange={(e) => setQuantidade(e.target.value)} />
             <input type="number" placeholder="preço" onChange={(e) => setPreco(e.target.value)} />
-            {/* Fazer puxando do backend */}
-            <input type="text" placeholder="categoria" onChange={(e) => setCategoria(e.target.value)} />
+
+            {categorias.map((categoria, indice) => (
+                <div key={indice}>
+                    <input type="radio" name="categoria" onChange={(e) => setCategoria(e.target.value)} /> 
+                    {categoria.nome}
+                </div>
+            ))}
+
             <input type="text" placeholder="descricao" onChange={(e) => setDescricao(e.target.value)} />
             <input type="text" placeholder="imagem" onChange={(e) => setImagem(e.target.value)} />
             <input type="button" value="Cadastrar Produto" onClick={() => cadastrarProduto()} />
