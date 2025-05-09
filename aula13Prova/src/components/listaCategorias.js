@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {Link} from 'react-router-dom';
 
 const ListarCategoria = () => {
 
@@ -39,6 +40,8 @@ const ListarCategoria = () => {
                         <th>Nome da Categoria</th>
                         <th>usuario</th>
                         <th>id</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +50,8 @@ const ListarCategoria = () => {
                             <td>{categoria.nome}</td>
                             <td>{categoria.usuario}</td>
                             <td>{categoria._id}</td>
+                            <td><Link to={"/editaCategorias/" + categoria._id}>Editar</Link></td>
+                            <td><Link to={"/excluiCategorias" + categoria._id}>Excluir</Link></td>
                         </tr>
                     ))}
                 </tbody>

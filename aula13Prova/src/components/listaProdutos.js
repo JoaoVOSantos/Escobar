@@ -58,7 +58,7 @@ const ListaProdutos = () => {
                             <td>{produto._id}</td>
                             <td>{produto.descricao}</td>
                             <td>{produto.categoria}</td>
-                            <td>{produto.imagem}</td>
+                            <td><img src={produto.imagem} width="100px" height="75px"/></td>
                             <td>{produto.preco}</td>
                             <td>{produto.quantidade}</td>
                             <td><Link to={"/editaProdutos/" + produto._id}>Editar</Link></td>
