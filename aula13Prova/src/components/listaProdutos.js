@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import {Link} from 'react-router-dom';
+
 
 const ListaProdutos = () => {
 
@@ -8,14 +10,12 @@ const ListaProdutos = () => {
 
     const ListarProdutos = async () => {
         var url = "https://backend-completo.vercel.app/app/produtos"
-
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.get(
             url,
             { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
-            console.log(retorno)
             if (retorno.data.error) {
                 alert(retorno.data.error)
                 return
@@ -42,6 +42,7 @@ const ListaProdutos = () => {
                         <th>usuario</th>
                         <th>id</th>
                         <th>Descrição</th>
+                        <th>Categoria</th>
                         <th>imagem</th>
                         <th>preço</th>
                         <th>quantidade</th>
@@ -56,11 +57,12 @@ const ListaProdutos = () => {
                             <td>{produto.usuario}</td>
                             <td>{produto._id}</td>
                             <td>{produto.descricao}</td>
+                            <td>{produto.categoria}</td>
                             <td>{produto.imagem}</td>
                             <td>{produto.preco}</td>
                             <td>{produto.quantidade}</td>
-                            <td><input type="button" value="Editar" /></td>
-                            <td><input type="button" value="Excluir" /></td>
+                            <td><Link to={"/editaProdutos/" + produto._id}>Editar</Link></td>
+                            <td><Link to='/excluirProdutos' >Excluir</Link></td>
                         </tr>
                     ))}
                 </tbody>
