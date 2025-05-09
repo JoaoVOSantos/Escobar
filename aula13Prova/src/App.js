@@ -21,6 +21,7 @@ import {
     Outlet,
     Link
 } from 'react-router-dom';
+import EditaCategorias from './components/editaCategorias';
 
 
 
@@ -62,10 +63,8 @@ const App = () => {
                         <Route path="/pessoas" element={<Pessoas />} />
                         <Route path="/listaCategorias" element={<ListaCategorias />} />
                         <Route path="/listaProdutos" element={<ListaProdutos />} />
-                        <Route path="/editaProdutos/:codigo" element={<EditaProdutos />} />
-                        {/* <Route path="/excluiProdutos/:codigo" element={<EditaProdutos />} /> */}
-                        <Route path="/editaCategorias/:codigo" element={<EditaProdutos />} />
-                        {/* <Route path="/excluiCategorias/:codigo" element={<EditaProdutos />} /> */}
+                        <Route path="/editaProdutos/:codigoProduto" element={<EditaProdutos />} />
+                        <Route path="/editaCategorias/:codigoCategoria" element={<EditaCategorias />} />
                         <Route path="/vendas" element={<Vendas />} />
                         <Route path="/limpar" element={<Limpar />} />
                     </Route>

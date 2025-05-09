@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 const EditaProdutos = () => {
 
     const { codigo } = useParams();
-    setId(codigo)
 
     var [id, setId] = useState('')
     var [nome, setNome] = useState('')

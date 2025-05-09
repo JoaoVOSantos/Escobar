@@ -4,11 +4,45 @@ import { useParams } from 'react-router-dom';
 
 const EditaCategorias = () => {
 
-    const { codigo } = useParams();
+    const { codigoCategoria } = useParams()
+    var [id, setId] = useState('')
+    var [categoria, setCategoria] = useState('')
 
+    var [categorias, setCategorias] = useState([])
 
     const editaCategorias = async () => {
-        var url = "https://backend-completo.vercel.app/app/produtos"
+        var url = "https://backend-completo.vercel.app/app/categorias"
+        var dados = {
+            id: id,
+            nome_categoria: categoria,
+        }
+        var token = localStorage.getItem("ALUNO_ITE")
+
+        await axios.put(
+            url,
+            dados,
+            { headers: { Authorization: `Bearer ${token}` } }
+        ).then(retorno => {
+            if (retorno.data.error) {
+                alert(retorno.data.error)
+                return
+            }
+            if (retorno.status === 200) {
+                alert("Edição de Categorias - sucesso.")
+                console.log(retorno)
+
+            }
+        })
+    }
+
+    useEffect(() => {
+
+        listaCategorias()
+
+    }, [])
+
+    const listaCategorias = async () => {
+        var url = "https://backend-completo.vercel.app/app/categorias"
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.get(
@@ -20,22 +54,20 @@ const EditaCategorias = () => {
                 return
             }
             if (retorno.status === 200) {
-                alert("Listagem de Produtos - sucesso.")
-                
+                setCategorias(retorno.data)
                 console.log(retorno)
-                setProdutos(retorno.data)
+
             }
         })
     }
-
-
     return (
         <div>
             <h1>Editar Categorias</h1>
-            <div>
-                <h1>Categorias</h1>
-                <input type="text" placeholder="Nome da Categoria" onChange={(e) => setNome(e.target.value)} />
-            </div>
+
+            <h1>Categorias</h1>
+            <input type="text" value={categoria} onChange={(e) => setCategoria(e.target.value)} />
+            <input type="button" value="Editar" onChange={(e) => editaCategorias(e.target.value)} />
+
         </div>
     )
 }
