@@ -51,7 +51,7 @@ const ListarCategoria = () => {
                             <td>{categoria.usuario}</td>
                             <td>{categoria._id}</td>
                             <td><Link to={"/editaCategorias/" + categoria._id}>Editar</Link></td>
-                            <td><Link to={"/excluiCategorias" + categoria._id}>Excluir</Link></td>
+                            <td><Link to={"/excluiCategorias/" + categoria._id}>Excluir</Link></td>
                         </tr>
                     ))}
                 </tbody>
