@@ -8,9 +8,7 @@ const ListaVendas = () => {
 
     const listarVendas = async () => {
         var url = "https://backend-completo.vercel.app/app/venda"
-
         var token = localStorage.getItem("ALUNO_ITE")
-
         await axios.get(
             url,
             { headers: { Authorization: `Bearer ${token}` } }
@@ -21,12 +19,38 @@ const ListaVendas = () => {
                 return
             }
             if (retorno.status === 200) {
-                alert("Listagem de Vendas - sucesso.")
                 setVendas(retorno.data)
                 console.log(retorno)
             }
         })
     }
+
+
+    const excluirVendas = async (vendaId) => {
+        var url = "https://backend-completo.vercel.app/app/venda"
+        var dados ={
+            id: vendaId
+        }
+        var token = localStorage.getItem("ALUNO_ITE")
+    
+        await axios.delete( url,{
+            data: dados,
+            headers: { Authorization: `Bearer ${token}` }
+            
+
+        }).then(retorno => {
+            if (retorno.data.erro) {
+                alert(retorno.data.erro)
+                console.log(vendaId)
+                return
+            }
+            if (retorno.status === 200) {
+                alert("Venda excluida com Sucesso")
+                listarVendas()
+                console.log(retorno)
+            }
+        }
+        )}
 
     return (
         <div>
@@ -37,6 +61,7 @@ const ListaVendas = () => {
             <table border='1'>
                 <thead>
                     <tr>
+                        <th>Id Venda</th>
                         <th>Nome do Cliente</th>
                         <th>usuario</th>
                         <th>data</th>
@@ -48,6 +73,7 @@ const ListaVendas = () => {
                 <tbody>
                     {vendas.map((venda, indice) => (
                         <tr key={indice}>
+                            <th>{venda._id}</th>
                             <td>{venda.nomeCliente}</td>
                             <td>{venda.usuario}</td>
                             <td>{venda.data}</td>
@@ -60,7 +86,7 @@ const ListaVendas = () => {
                                 ))}
                             </td>
                             <td><Link to={"/editaVendas/" + venda._id}>Editar</Link></td>
-                            <td><Link to={"/excluiVendas/" + venda._id}>Excluir</Link></td>
+                            <td><input type="button" value="Excluir" onClick={() => excluirVendas(venda._id)}/></td>
                         </tr>
                     ))}
                 </tbody>
