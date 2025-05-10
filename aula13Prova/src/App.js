@@ -11,7 +11,8 @@ import ListaCategorias from './components/listaCategorias';
 import ListaProdutos from './components/listaProdutos';
 import EditaProdutos from './components/editaProdutos';
 import Limpar from './components/limpar';
-
+import ListaVendas from './components/listaVendas';
+import EditaCategorias from './components/editaCategorias';
 
 import {
     BrowserRouter,
@@ -21,7 +22,7 @@ import {
     Outlet,
     Link
 } from 'react-router-dom';
-import EditaCategorias from './components/editaCategorias';
+
 
 
 
@@ -49,6 +50,7 @@ const App = () => {
                     <Link to="/vendas">Vendas</Link>
                     <Link to="/listaCategorias">Lista de Categorias</Link>
                     <Link to="/listaProdutos">Lista de Produtos</Link>
+                    <Link to="/listaVendas">Lista de Vendas</Link>
                     <Link to="/editaProdutos">Editar Produtos</Link>
                     <Link to="/limpar">limpar</Link>
                 </nav>
@@ -66,6 +68,7 @@ const App = () => {
                         <Route path="/editaProdutos/:codigoProduto" element={<EditaProdutos />} />
                         <Route path="/editaCategorias/:codigoCategoria" element={<EditaCategorias />} />
                         <Route path="/vendas" element={<Vendas />} />
+                        <Route path="/listaVendas" element={<ListaVendas />} />
                         <Route path="/limpar" element={<Limpar />} />
                     </Route>
                 </Routes>
