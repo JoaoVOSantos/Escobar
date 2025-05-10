@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
@@ -6,7 +6,13 @@ const ListarCategoria = () => {
 
     var [categorias, setCategorias] = useState([])
 
-    const ListarCategoria = async () => {
+
+    useEffect(() => {
+        listarCategoria();
+    }, []);
+
+
+    const listarCategoria = async () => {
         var url = "https://backend-completo.vercel.app/app/categorias"
 
         var token = localStorage.getItem("ALUNO_ITE")
@@ -21,7 +27,6 @@ const ListarCategoria = () => {
                 return
             }
             if (retorno.status === 200) {
-                alert("Listagem de Categorias - sucesso.")
                 setCategorias(retorno.data)
                 console.log(retorno)
             }
@@ -31,8 +36,6 @@ const ListarCategoria = () => {
     return (
         <div>
             <h1>Categorias</h1>
-
-            <input type="button" value="Listar Categorias" onClick={() => ListarCategoria()} />
 
             <table border='1'>
                 <thead>

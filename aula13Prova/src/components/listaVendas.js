@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
 const ListaVendas = () => {
 
     var [vendas, setVendas] = useState([])
+
+
+    useEffect(() => {
+        listarVendas();
+    }, []);
 
     const listarVendas = async () => {
         var url = "https://backend-completo.vercel.app/app/venda"
@@ -55,8 +60,6 @@ const ListaVendas = () => {
     return (
         <div>
             <h1>Vendas</h1>
-
-            <input type="button" value="Listar Vendas" onClick={() => listarVendas()} />
 
             <table border='1'>
                 <thead>
