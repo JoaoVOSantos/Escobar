@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Box from '@mui/material/Box';
-import Alert from'@mui/material/Alert';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Snackbar from '@mui/material/Snackbar';
 
+import {Box, 
+    Alert, 
+    TextField, 
+    Button, 
+    Typography, 
+    Snackbar} from '@mui/material'
 
 const Categorias = () => {
     var [categoria, setCategoria] = useState('')

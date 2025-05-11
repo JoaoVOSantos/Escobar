@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import Radio from '@mui/material/Radio';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import RadioGroup from '@mui/material/RadioGroup';
+
+import {Box, 
+    Alert, 
+    TextField, 
+    Button, 
+    Typography, 
+    Snackbar,
+    Radio,
+    FormControl,
+    FormControlLabel,
+    RadioGroup,
+    FormLabel
+} from '@mui/material'
+
 
 const Produtos = () => {
     var [nome, setNome] = useState('')
