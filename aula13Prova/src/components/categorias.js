@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Box from '@mui/material/Box';
+import Alert from'@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 
 
 const Categorias = () => {
@@ -54,7 +54,7 @@ const Categorias = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    minHeight: 'calc(100vh - 64px)', // considera a altura da NavBar
+                    minHeight: 'calc(100vh - 72px)', // considera a altura da NavBar
                     bgcolor: '#f0f0f0',
                 }}
             >
@@ -90,7 +90,7 @@ const Categorias = () => {
             </Box>
             <Snackbar
                 open={open}
-                autoHideDuration={4000}
+                autoHideDuration={2000}
                 onClose={handleClose}
                 anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
             >
