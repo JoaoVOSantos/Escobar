@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 const EditaCategorias = () => {
 
     const { codigoCategoria } = useParams()
+
     var [id, setId] = useState('')
     var [categoria, setCategoria] = useState('')
 
@@ -38,8 +39,20 @@ const EditaCategorias = () => {
     useEffect(() => {
 
         listaCategorias()
+        filtrarCategoria()
 
     }, [])
+
+
+    const filtrarCategoria = () => {
+        categorias.filter(
+            categoria => categoria._id === codigoCategoria
+        )
+        setCategoria(categorias.nome_categoria)
+        console.log(categoria)
+        console.log(categorias)
+    }
+
 
     const listaCategorias = async () => {
         var url = "https://backend-completo.vercel.app/app/categorias"
@@ -49,13 +62,12 @@ const EditaCategorias = () => {
             url,
             { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
-            if (retorno.data.error) {
-                alert(retorno.data.error)
+            if (retorno.data.erro) {
+                alert(retorno.data.erro)
                 return
             }
             if (retorno.status === 200) {
                 setCategorias(retorno.data)
-                console.log(retorno)
 
             }
         })
@@ -66,7 +78,7 @@ const EditaCategorias = () => {
 
             <h1>Categorias</h1>
             <input type="text" value={categoria} onChange={(e) => setCategoria(e.target.value)} />
-            <input type="button" value="Editar" onChange={(e) => editaCategorias(e.target.value)} />
+            <input type="button" value="Editar" onClick={() => (editaCategorias())} />
 
         </div>
     )
