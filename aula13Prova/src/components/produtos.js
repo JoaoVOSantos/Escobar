@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import {Box, 
-    Alert, 
-    TextField, 
-    Button, 
-    Typography, 
+import {
+    Box,
+    Alert,
+    TextField,
+    Button,
+    Typography,
     Snackbar,
     Radio,
     FormControl,
@@ -176,20 +177,37 @@ const Produtos = () => {
                     >
                         {/* Titulo */}
                         <FormLabel component="legend">Categorias</FormLabel>
-                        {/*  */}
+                        {/* Radio Group com as Categorias */}
                         <RadioGroup
                             onChange={(e) => setCategoria(e.target.value)}
-                            sx={{ pl: 1 }}
                         >
-                            {categorias.map((categoria, index) => (
-                                <FormControlLabel
-                                    key={index}
-                                    value={categoria._id}
-                                    control={<Radio />}
-                                    label={categoria.nome}
-                                />
-                            ))}
+                            <Box
+                                sx={{
+                                    display: 'grid',
+                                    gridTemplateColumns: '1fr 1fr',
+                                    gap: 1,
+                                    pl: 1
+                                }}
+                            >
+                                {categorias.map((categoria, index) => (
+                                    <FormControlLabel
+                                        key={index}
+                                        value={categoria._id}
+                                        control={<Radio />}
+                                        label={categoria.nome}
+                                        sx={
+                                            categorias.length % 2 === 1 && index === categorias.length - 1
+                                                ? {
+                                                    gridColumn: '1 / -1',
+                                                    justifySelf: 'center'
+                                                }
+                                                : {}
+                                        }
+                                    />
+                                ))}
+                            </Box>
                         </RadioGroup>
+
                     </FormControl>
 
                     {/* Botao Cadastrar com OnClick */}
