@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Link} from 'react-router-dom';
 
 const ListarCategoria = () => {
 
@@ -33,6 +32,34 @@ const ListarCategoria = () => {
         })
     }
 
+    const excluirCategoria = async (categoriaId) => {
+        var url = "https://backend-completo.vercel.app/app/categorias"
+        var dados = {
+            id: categoriaId
+        }
+        var token = localStorage.getItem("ALUNO_ITE")
+
+        await axios.delete(url, {
+            data: dados,
+            headers: { Authorization: `Bearer ${token}` }
+
+
+        }).then(retorno => {
+            if (retorno.data.erro) {
+                alert(retorno.data.erro)
+                console.log(categoriaId)
+                return
+            }
+            if (retorno.status === 200) {
+                alert("Categoria excluida com Sucesso")
+                listarCategoria()
+                console.log(retorno)
+            }
+        }
+        )
+    }
+
+
     return (
         <div>
             <h1>Categorias</h1>
@@ -53,8 +80,8 @@ const ListarCategoria = () => {
                             <td>{categoria.nome}</td>
                             <td>{categoria.usuario}</td>
                             <td>{categoria._id}</td>
-                            <td><Link to={"/editaCategorias/" + categoria._id}>Editar</Link></td>
-                            <td><Link to={"/excluiCategorias/" + categoria._id}>Excluir</Link></td>
+                            <td><input type="button" value="Editar"  /></td>
+                            <td><input type="button" value="Excluir" onClick={() => excluirCategoria(categoria._id)} /></td>
                         </tr>
                     ))}
                 </tbody>
