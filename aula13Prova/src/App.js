@@ -1,16 +1,16 @@
 // App.js
 import React from 'react';
 import Dashboard from './components/dashboard';
-import Produtos from './components/produtos';
+import Produtos from './components/produtos/produtos';
 import Login from './components/login';
 import Registrar from './components/registrar';
-import Categorias from './components/categorias';
-import Vendas from './components/vendas';
-import ListaCategorias from './components/listaCategorias';
-import ListaProdutos from './components/listaProdutos';
-import EditaProdutos from './components/editaProdutos';
-import ListaVendas from './components/listaVendas';
-import EditaCategorias from './components/editaCategorias';
+import Categorias from './components/categorias/categorias';
+import Vendas from './components/vendas/vendas';
+import ListaCategorias from './components/categorias/listaCategorias';
+import ListaProdutos from './components/produtos/listaProdutos';
+import EditaProdutos from './components/produtos/editaProdutos';
+import ListaVendas from './components/vendas/listaVendas';
+import EditaCategorias from './components/categorias/editaCategorias';
 
 import {
     BrowserRouter,
