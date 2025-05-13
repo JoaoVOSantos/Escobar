@@ -192,7 +192,7 @@ const Produtos = () => {
                                 {categorias.map((categoria, index) => (
                                     <FormControlLabel
                                         key={index}
-                                        value={categoria._id}
+                                        value={categoria.nome}
                                         control={<Radio />}
                                         label={categoria.nome}
                                         sx={
