@@ -202,31 +202,6 @@ const Vendas = () => {
                 </Alert>
             </Snackbar>
         </>
-        // <div>
-        //     <h1>Vendas</h1>
-        //     <input type="text" placeholder="Nome do cliente" onChange={(e) => setNome(e.target.value)} />
-        //     <input type="date" placeholder="Data" onChange={(e) => setData(e.target.value)} />
-
-        //     {produtos.map((produto, indice) => (
-        //         <div key={indice}>
-        //             <img src={produto.imagem} alt={produto.nome} />
-        //             <h1>{produto.nome}</h1>
-        //             <h2>{produto.preco}</h2>
-        //             <h3>{produto.descricao}</h3>
-        //             <input type="checkbox" onChange={(e) => {
-        //                 if (e.target.checked) {
-        //                     setProdutosVendidos([...produtosVendidos, produto])
-        //                 } else {
-        //                     // filtra e exclui do array os produtos que não foram selecionados
-        //                     setProdutosVendidos(produtosVendidos.filter(p => p._id !== produto._id))
-        //                 }
-        //             }}
-        //             />
-        //         </div>
-        //     ))}
-
-        //     <input type="button" value="Cadastrar Venda" onClick={() => cadastrarVenda()} />
-        // </div>
     )
 }
 
