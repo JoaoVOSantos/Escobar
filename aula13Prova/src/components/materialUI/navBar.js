@@ -13,13 +13,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShieldIcon from '@mui/icons-material/Shield';
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
-
+    const navigate = useNavigate()
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
- 
+
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     }
@@ -32,7 +32,9 @@ const NavBar = () => {
 
     const logout = () => {
         localStorage.removeItem("ALUNO_ITE")
-        alert("Logout efetuado com sucesso")
+        setTimeout(() => {
+            navigate('/login');
+        }, 100);
     }
 
     const limpar = async () => {

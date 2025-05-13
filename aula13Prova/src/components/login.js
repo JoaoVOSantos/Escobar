@@ -9,7 +9,11 @@ import {
     Snackbar,
 } from "@mui/material";
 
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
+
+    const navigate = useNavigate()
     var [usuario, setUsuario] = useState('')
     var [senha, setSenha] = useState('')
 
@@ -40,6 +44,9 @@ const Login = () => {
                 setMensagem("Login efetuado com sucesso.");
                 setOpen(true);
                 localStorage.setItem("ALUNO_ITE", retorno.data.token)
+                setTimeout(() => {
+                    navigate('/');
+                }, 1500);
             }
         })
     }
