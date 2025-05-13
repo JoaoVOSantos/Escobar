@@ -26,11 +26,6 @@ const ListaProdutos = () => {
     const [erro, setErro] = useState(false)
 
 
-
-    useEffect(() => {
-        listarProdutos()
-    }, [])
-
     const listarProdutos = async () => {
         var url = "https://backend-completo.vercel.app/app/produtos"
         var token = localStorage.getItem("ALUNO_ITE")
@@ -47,7 +42,6 @@ const ListaProdutos = () => {
             }
             if (retorno.status === 200) {
                 setProdutos(retorno.data)
-                console.log(retorno)
             }
         })
     }
@@ -83,8 +77,11 @@ const ListaProdutos = () => {
 
 
     const handleClose = () => {
-        setOpen(false);
+        setOpen(false)
     };
+    useEffect(() => {
+        listarProdutos()
+    }, [])
 
     return (
         <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
@@ -151,7 +148,6 @@ const ListaProdutos = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-
             <Snackbar
                 open={open}
                 autoHideDuration={3000}
