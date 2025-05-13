@@ -70,9 +70,7 @@ const EditaCategorias = () => {
             if (retorno.status === 200 && Array.isArray(retorno.data)) {
                 const categoriaSelecionada = retorno.data.find(cat =>
                     cat._id === codigoCategoria);
-
-                    setCategoria(categoriaSelecionada.nome);
-                    console.log(categoriaSelecionada)
+                    setCategoria(categoriaSelecionada.nome)
             }
         })
     }
