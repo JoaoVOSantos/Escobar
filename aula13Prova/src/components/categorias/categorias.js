@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react"
+import axios from "axios"
 
 import {Box, 
     Alert, 
@@ -10,9 +10,9 @@ import {Box,
 
 const Categorias = () => {
     var [categoria, setCategoria] = useState('')
-    const [mensagem, setMensagem] = useState('');
-    const [open, setOpen] = useState(false);
-    const [erro, setErro] = useState(false);
+    const [mensagem, setMensagem] = useState('')
+    const [open, setOpen] = useState(false)
+    const [erro, setErro] = useState(false)
 
 
     const cadastrarCategoria = async () => {
@@ -30,15 +30,15 @@ const Categorias = () => {
         ).then(retorno => {
             console.log(retorno)
             if (retorno.data.error) {
-                setErro(true);
-                setMensagem(retorno.data.error);
-                setOpen(true);
+                setErro(true)
+                setMensagem(retorno.data.error)
+                setOpen(true)
                 return
             }
             if (retorno.data._id) {
-                setErro(false);
-                setMensagem("Categoria cadastrada com sucesso.");
-                setOpen(true);
+                setErro(false)
+                setMensagem("Categoria cadastrada com sucesso.")
+                setOpen(true)
             }
         })
 
