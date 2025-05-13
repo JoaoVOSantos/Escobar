@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
+import {
+    Box,
+    TextField,
+    Button,
+    Typography,
+    Snackbar,
+    Alert
+} from "@mui/material";
 
 const EditaCategorias = () => {
 
-    const { codigoCategoria } = useParams()
+    const navigate = useNavigate();
 
-    var [id, setId] = useState('')
+    const { codigoCategoria } = useParams()
     var [categoria, setCategoria] = useState('')
 
-    var [categorias, setCategorias] = useState([])
+    const [mensagem, setMensagem] = useState('');
+    const [erro, setErro] = useState(false);
+    const [open, setOpen] = useState(false);
+
 
     const editaCategorias = async () => {
         var url = "https://backend-completo.vercel.app/app/categorias"
         var dados = {
-            id: id,
+            id: codigoCategoria,
             nome_categoria: categoria,
         }
         var token = localStorage.getItem("ALUNO_ITE")
@@ -25,34 +37,23 @@ const EditaCategorias = () => {
             { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
             if (retorno.data.error) {
-                alert(retorno.data.error)
+                setErro(true);
+                setMensagem(retorno.data.error);
+                setOpen(true);
                 return
             }
             if (retorno.status === 200) {
-                alert("Edição de Categorias - sucesso.")
-                console.log(retorno)
+                setErro(false);
+                setMensagem("Categoria editada com sucesso.");
+                setOpen(true);
+
+                setTimeout(() => {
+                    navigate('/listaCategorias');
+                }, 1500);
 
             }
         })
     }
-
-    useEffect(() => {
-
-        listaCategorias()
-        filtrarCategoria()
-
-    }, [])
-
-
-    const filtrarCategoria = () => {
-        categorias.filter(
-            categoria => categoria._id === codigoCategoria
-        )
-        setCategoria(categorias.nome_categoria)
-        console.log(categoria)
-        console.log(categorias)
-    }
-
 
     const listaCategorias = async () => {
         var url = "https://backend-completo.vercel.app/app/categorias"
@@ -62,25 +63,88 @@ const EditaCategorias = () => {
             url,
             { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
-            if (retorno.data.erro) {
-                alert(retorno.data.erro)
+            if (retorno.data.error) {
+                alert(retorno.data.error)
                 return
             }
-            if (retorno.status === 200) {
-                setCategorias(retorno.data)
+            if (retorno.status === 200 && Array.isArray(retorno.data)) {
+                const categoriaSelecionada = retorno.data.find(cat =>
+                    cat._id === codigoCategoria);
 
+                    setCategoria(categoriaSelecionada.nome);
+                    console.log(categoriaSelecionada)
             }
         })
     }
+
+
+    useEffect(() => {
+        listaCategorias()
+    }, [])
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
-        <div>
-            <h1>Editar Categorias</h1>
+        <>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    minHeight: "calc(100vh - 72px)",
+                    bgcolor: "#f0f0f0",
+                }}
+            >
+                <Box
+                    sx={{
+                        width: 400,
+                        p: 4,
+                        borderRadius: 2,
+                        border: "2px solid #1976d2",
+                        bgcolor: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    <Typography variant="h5" mb={2}>
+                        Editar Categoria
+                    </Typography>
 
-            <h1>Categorias</h1>
-            <input type="text" value={categoria} onChange={(e) => setCategoria(e.target.value)} />
-            <input type="button" value="Editar" onClick={() => (editaCategorias())} />
+                    <TextField
+                        fullWidth
+                        label="Nome da Categoria"
+                        value={categoria}
+                        onChange={(e) => setCategoria(e.target.value)}
+                        sx={{ mb: 2 }}
+                    />
 
-        </div>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={editaCategorias}
+                    >
+                        Salvar Alterações
+                    </Button>
+                </Box>
+            </Box>
+
+            <Snackbar
+                open={open}
+                autoHideDuration={2000}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: "center", horizontal: "center" }}
+            >
+                <Alert
+                    onClose={handleClose}
+                    severity={erro ? "error" : "success"}
+                    sx={{ width: "100%" }}
+                >
+                    {mensagem}
+                </Alert>
+            </Snackbar>
+        </>
     )
 }
 

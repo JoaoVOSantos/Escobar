@@ -110,11 +110,11 @@ const ListarCategoria = () => {
                                 <TableCell>{categoria.usuario}</TableCell>
                                 <TableCell>
                                     <Button
+                                        component={Link}
+                                        to={`/editaCategorias/${categoria._id}`}
                                         variant="outlined"
                                         color="primary"
                                         size="small"
-                                        component={Link}
-                                        to={`/editarCategoria/${categoria._id}`} // ajuste se necessário
                                     >
                                         Editar
                                     </Button>
