@@ -6,6 +6,7 @@ import {
     Typography,
     Paper,
     Table,
+    TextField,
     TableBody,
     TableCell,
     TableContainer,
@@ -24,11 +25,37 @@ const ListaProdutos = () => {
     const [mensagem, setMensagem] = useState("")
     const [open, setOpen] = useState(false)
     const [erro, setErro] = useState(false)
+    const [busca, setBusca] = useState("");
 
 
     const listarProdutos = async () => {
         var url = "https://backend-completo.vercel.app/app/produtos"
         var token = localStorage.getItem("ALUNO_ITE")
+
+        await axios.get(
+            url,
+            { headers: { Authorization: `Bearer ${token}` } }
+        ).then(retorno => {
+            if (retorno.data.error) {
+                setErro(true);
+                setMensagem(retorno.data.error);
+                setOpen(true);
+                return
+            }
+            if (retorno.status === 200) {
+                setProdutos(retorno.data)
+            }
+        })
+    }
+
+    const buscarPorNome = async (nome) => {
+        var url = `https://backend-completo.vercel.app/app/produtos/${nome}`
+        var token = localStorage.getItem("ALUNO_ITE")
+
+        if (nome.trim() === "") {
+            listarProdutos(); // volta à lista completa
+            return;
+        }
 
         await axios.get(
             url,
@@ -90,6 +117,18 @@ const ListaProdutos = () => {
             </Typography>
 
             <TableContainer component={Paper}>
+                <TextField
+                    label="Buscar produto por nome"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    value={busca}
+                    onChange={(e) => {
+                        const nome = e.target.value;
+                        setBusca(nome);
+                        buscarPorNome(nome); // busca a cada mudança
+                    }}
+                />
                 <Table>
                     <TableHead sx={{ bgcolor: "#1976d2" }}>
                         <TableRow>
