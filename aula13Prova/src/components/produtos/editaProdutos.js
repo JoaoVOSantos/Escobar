@@ -135,8 +135,6 @@ const EditaProdutos = () => {
         listaCategorias()
     }, [])
 
-
-
     return (
         <>
             <Box

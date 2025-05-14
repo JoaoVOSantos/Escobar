@@ -100,7 +100,6 @@ const ListaVendas = () => {
                             <TableCell sx={{ color: "white" }}>Usuário</TableCell>
                             <TableCell sx={{ color: "white" }}>Data</TableCell>
                             <TableCell sx={{ color: "white" }}>Produtos</TableCell>
-                            <TableCell sx={{ color: "white" }}>Editar</TableCell>
                             <TableCell sx={{ color: "white" }}>Excluir</TableCell>
                         </TableRow>
                     </TableHead>
@@ -110,7 +109,7 @@ const ListaVendas = () => {
                                 <TableCell>{venda._id}</TableCell>
                                 <TableCell>{venda.nomeCliente}</TableCell>
                                 <TableCell>{venda.usuario}</TableCell>
-                                <TableCell>{venda.data}</TableCell>
+                                <TableCell>{new Date(venda.data).toLocaleDateString('pt-BR')}</TableCell>
                                 <TableCell>
                                     {venda.produtos.map((produto, i) => (
                                         <Typography variant="body2" key={i}>
@@ -118,17 +117,7 @@ const ListaVendas = () => {
                                         </Typography>
                                     ))}
                                 </TableCell>
-                                <TableCell>
-                                    <Button
-                                        component={Link}
-                                        to={`/editaVendas/${venda._id}`}
-                                        variant="outlined"
-                                        color="primary"
-                                        size="small"
-                                    >
-                                        Editar
-                                    </Button>
-                                </TableCell>
+                                
                                 <TableCell>
                                     <Button
                                         onClick={() => excluirVendas(venda._id)}
