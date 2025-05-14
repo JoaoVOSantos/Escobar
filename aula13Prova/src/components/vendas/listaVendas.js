@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Link } from 'react-router-dom'
 
 import {
     Box,
@@ -46,6 +45,10 @@ const ListaVendas = () => {
             if (retorno.status === 200) {
                 setVendas(retorno.data)
                 console.log(retorno)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -75,6 +78,10 @@ const ListaVendas = () => {
                 setMensagem("Venda excluída com sucesso.");
                 setOpen(true);
                 listarVendas();
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         }
         )

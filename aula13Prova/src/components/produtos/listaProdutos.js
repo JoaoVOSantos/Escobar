@@ -44,6 +44,10 @@ const ListaProdutos = () => {
             }
             if (retorno.status === 200) {
                 setProdutos(retorno.data)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -69,6 +73,10 @@ const ListaProdutos = () => {
             }
             if (retorno.status === 200) {
                 setProdutos(retorno.data)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -97,6 +105,10 @@ const ListaProdutos = () => {
                 setMensagem("Produto excluído com sucesso.");
                 setOpen(true);
                 listarProdutos();
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         }
         )

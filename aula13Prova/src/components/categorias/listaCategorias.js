@@ -76,6 +76,10 @@ const ListarCategoria = () => {
                 setMensagem("Categoria excluída com sucesso.");
                 setOpen(true);
                 listarCategoria();
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         }
         )

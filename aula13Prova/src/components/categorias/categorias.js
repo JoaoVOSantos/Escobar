@@ -39,6 +39,10 @@ const Categorias = () => {
                 setErro(false)
                 setMensagem("Categoria cadastrada com sucesso.")
                 setOpen(true)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
 

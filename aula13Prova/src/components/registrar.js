@@ -48,6 +48,10 @@ const Registrar = () => {
                 setErro(false);
                 setMensagem("Usuário cadastrado com sucesso!");
                 setOpen(true);
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }

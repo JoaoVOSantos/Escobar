@@ -51,6 +51,10 @@ const EditaCategorias = () => {
                     navigate('/listaCategorias');
                 }, 1500);
 
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -73,6 +77,10 @@ const EditaCategorias = () => {
                     cat._id === codigoCategoria);
                     setCategoria(categoriaSelecionada.nome)
 
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }

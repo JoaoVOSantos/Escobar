@@ -52,6 +52,10 @@ const NavBar = () => {
             if (retorno.status === 200) {
                 alert(retorno.data.mensagem)
                 console.log(retorno)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }

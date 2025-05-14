@@ -53,6 +53,10 @@ const Vendas = () => {
                 setData("");
                 setProdutosVendidos([]);
                 console.log(retorno)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -78,6 +82,10 @@ const Vendas = () => {
             }
             if (retorno.status === 200) {
                 setProdutos(retorno.data)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
 

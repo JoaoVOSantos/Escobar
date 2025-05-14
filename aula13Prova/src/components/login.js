@@ -47,6 +47,10 @@ const Login = () => {
                 setTimeout(() => {
                     navigate('/');
                 }, 1500);
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }

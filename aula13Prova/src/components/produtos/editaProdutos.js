@@ -52,6 +52,10 @@ const EditaProdutos = () => {
             if (retorno.status === 200) {
                 // Esta certo
                 setCategorias(retorno.data)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -84,6 +88,10 @@ const EditaProdutos = () => {
 
                 
 
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -122,6 +130,10 @@ const EditaProdutos = () => {
                 setTimeout(() => {
                     navigate('/listaProdutos');
                 }, 1500);
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }

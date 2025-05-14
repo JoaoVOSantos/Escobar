@@ -52,6 +52,10 @@ const Produtos = () => {
             if (retorno.status === 200) {
                 setCategorias(retorno.data)
                 console.log(retorno.data)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
@@ -85,6 +89,10 @@ const Produtos = () => {
                 setErro(false)
                 setMensagem("Produto cadastrado com sucesso.")
                 setOpen(true)
+            }else{
+                setErro(true);
+                setMensagem("Conexão com Servidor Falhou")
+                setOpen(true);
             }
         })
     }
