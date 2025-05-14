@@ -22,6 +22,7 @@ const EditaProdutos = () => {
     const [mensagem, setMensagem] = useState("");
     const [open, setOpen] = useState(false);
     const [erro, setErro] = useState(false);
+
     const { codigoProduto } = useParams();
 
     var [nome, setNome] = useState("")
@@ -80,6 +81,8 @@ const EditaProdutos = () => {
                 setCategoria(produtoSelecionado.categoria);
                 setDescricao(produtoSelecionado.descricao);
                 setImagem(produtoSelecionado.imagem)
+
+                
 
             }
         })

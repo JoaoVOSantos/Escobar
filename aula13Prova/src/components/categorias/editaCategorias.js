@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -67,10 +67,12 @@ const EditaCategorias = () => {
                 alert(retorno.data.error)
                 return
             }
-            if (retorno.status === 200 && Array.isArray(retorno.data)) {
+            if (retorno.status === 200) {
+
                 const categoriaSelecionada = retorno.data.find(cat =>
                     cat._id === codigoCategoria);
                     setCategoria(categoriaSelecionada.nome)
+
             }
         })
     }
