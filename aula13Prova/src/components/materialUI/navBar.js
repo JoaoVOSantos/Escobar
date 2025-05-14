@@ -14,11 +14,18 @@ import MenuItem from '@mui/material/MenuItem';
 import ShieldIcon from '@mui/icons-material/Shield';
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
+import {
+    Snackbar,
+    Alert
+} from '@mui/material'
 
 const NavBar = () => {
     const navigate = useNavigate()
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
+    const [mensagem, setMensagem] = useState('')
+    const [open, setOpen] = useState(false)
+    const [erro, setErro] = useState(false)
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -37,6 +44,10 @@ const NavBar = () => {
         }, 100);
     }
 
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const limpar = async () => {
         var url = "https://backend-completo.vercel.app/app/limpar"
         var token = localStorage.getItem("ALUNO_ITE")
@@ -52,7 +63,7 @@ const NavBar = () => {
             if (retorno.status === 200) {
                 alert(retorno.data.mensagem)
                 console.log(retorno)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -225,6 +236,20 @@ const NavBar = () => {
                     </Box>
                 </Toolbar>
             </Container>
+            <Snackbar
+                open={open}
+                autoHideDuration={2000}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={handleClose}
+                    severity={erro ? 'error' : 'success'}
+                    sx={{ width: '100%' }}
+                >
+                    {mensagem}
+                </Alert>
+            </Snackbar>
         </AppBar>
     );
 };
