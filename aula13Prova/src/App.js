@@ -37,8 +37,10 @@ const Middleware = () => {
 
 const App = () => {
     return (
+        
         <BrowserRouter>
         <CssBaseline />
+        <title>Prova React</title>
         <AppBar />
             <div>
                 <Routes>
