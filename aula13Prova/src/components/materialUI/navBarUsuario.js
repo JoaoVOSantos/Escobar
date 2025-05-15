@@ -1,5 +1,8 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box, IconButton } from '@mui/material';
+import { AppBar, 
+        Toolbar, 
+        Typography, 
+        Box } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 
 const NavBarUsuario = () => {
