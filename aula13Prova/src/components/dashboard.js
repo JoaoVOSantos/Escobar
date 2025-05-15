@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NavBarUsuario from "./usuario/navBarUsuario"
+import NavBarUsuario from "./materialUI/navBarUsuario"
 import axios from "axios"
 
 import {
