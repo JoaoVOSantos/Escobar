@@ -44,7 +44,8 @@ const Dashboard = () => {
     }
 
     const listarProdutos = async () => {
-        var url = "https://backend-completo.vercel.app/app/produtos"
+        var usuario = localStorage.getItem("USUARIO")
+        var url = `https://backend-completo.vercel.app/app/produtos/${usuario}`
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.get(

@@ -90,8 +90,8 @@ const Produtos = () => {
                 setMensagem("Produto cadastrado com sucesso.")
                 setOpen(true)
                 setTimeout(() => {
-                    navigate('/listaProdutos');
-                }, 750);
+                    navigate('/listaProdutos')
+                }, 750)
             } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
