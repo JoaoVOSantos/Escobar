@@ -56,7 +56,7 @@ const Vendas = () => {
                     navigate('/listaVendas');
                 }, 750);
                 console.log(retorno)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -81,7 +81,7 @@ const Vendas = () => {
             }
             if (retorno.status === 200) {
                 setProdutos(retorno.data)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -100,7 +100,7 @@ const Vendas = () => {
 
     return (
         <>
-        <AppBar />
+            <AppBar />
             <Box
                 sx={{
                     display: "flex",
@@ -158,43 +158,70 @@ const Vendas = () => {
                         Produtos disponíveis
                     </Typography>
                     <Grid container spacing={2}>
-                        {produtos.map((produto, indice) => (
-                            <Grid item xs={12} sm={6} md={4} key={indice}>
-                                <Card>
-                                    <CardMedia
-                                        component="img"
-                                        height="140"
-                                        image={produto.imagem}
-                                        alt={produto.nome}
-                                    />
-                                    <CardContent>
-                                        <Typography variant="h6">{produto.nome}</Typography>
-                                        <Typography variant="body1">R$ {produto.preco}</Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            {produto.descricao}
-                                        </Typography>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    checked={produtosVendidos.some(p => p._id === produto._id)}
-                                                    onChange={(e) => {
-                                                        if (e.target.checked) {
-                                                            setProdutosVendidos([...produtosVendidos, produto]);
-                                                        } else {
-                                                            setProdutosVendidos(
-                                                                produtosVendidos.filter((p) => p._id !== produto._id)
-                                                            );
-                                                        }
-                                                    }}
-                                                />
-                                            }
-                                            label="Selecionar"
-                                            sx={{ mt: 1 }}
+                        {produtos.map((produto, indice) => {
+                            const selecionado = produtosVendidos.find(p => p._id === produto._id);
+
+                            return (
+                                <Grid item xs={12} sm={6} md={4} key={indice}>
+                                    <Card>
+                                        <CardMedia
+                                            component="img"
+                                            height="140"
+                                            image={produto.imagem}
+                                            alt={produto.nome}
                                         />
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        ))}
+                                        <CardContent>
+                                            <Typography variant="h6">{produto.nome}</Typography>
+                                            <Typography variant="body1">R$ {produto.preco}</Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {produto.descricao}
+                                            </Typography>
+
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        checked={!!selecionado}
+                                                        onChange={(e) => {
+                                                            if (e.target.checked) {
+                                                                setProdutosVendidos([...produtosVendidos, {
+                                                                    _id: produto._id,
+                                                                    nome: produto.nome,
+                                                                    preco: produto.preco,
+                                                                    quantidade: 1
+                                                                }]);
+                                                            } else {
+                                                                setProdutosVendidos(produtosVendidos.filter(p => p._id !== produto._id));
+                                                            }
+                                                        }}
+                                                    />
+                                                }
+                                                label="Selecionar"
+                                                sx={{ mt: 1 }}
+                                            />
+
+                                            {selecionado && (
+                                                <TextField
+                                                    type="number"
+                                                    label="Quantidade"
+                                                    variant="outlined"
+                                                    size="small"
+                                                    value={selecionado.quantidade}
+                                                    onChange={(e) => {
+                                                        const novaQuantidade = parseInt(e.target.value) || 1;
+                                                        setProdutosVendidos(produtosVendidos.map(p =>
+                                                            p._id === produto._id ? { ...p, quantidade: novaQuantidade } : p
+                                                        ));
+                                                    }}
+                                                    inputProps={{ min: 1 }}
+                                                    fullWidth
+                                                    sx={{ mt: 2 }}
+                                                />
+                                            )}
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            );
+                        })}
                     </Grid>
                 </Box>
             </Box>
