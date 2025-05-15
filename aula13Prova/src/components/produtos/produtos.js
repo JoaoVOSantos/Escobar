@@ -14,6 +14,7 @@ import {
     RadioGroup,
     FormLabel
 } from '@mui/material'
+import AppBar from "../materialUI/navBar"
 
 
 const Produtos = () => {
@@ -105,6 +106,7 @@ const Produtos = () => {
         // "div" vazia pq tem que retornar apenas uma div
         // Conhecido como  Fragmento React ou Fragment
         <>
+                <AppBar />
             {/* "Div" da tela inteira  */}
             <Box
                 sx={{

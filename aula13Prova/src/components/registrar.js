@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * Fun o que renderiza o formul rio de cadastro de usu rio
- * 
- * @returns {React.Component} O componente que renderiza o formul rio
- */
-/*******  c3fd9427-4ba8-476a-bf0f-70bbcff75c00  *******/  Box,
+    Box,
     Alert,
     TextField,
     Button,
     Typography,
     Snackbar,
 } from "@mui/material";
+import AppBar from "./materialUI/navBar"
 
 
 const Registrar = () => {
@@ -48,7 +43,7 @@ const Registrar = () => {
                 setErro(false);
                 setMensagem("Usuário cadastrado com sucesso!");
                 setOpen(true);
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -62,6 +57,7 @@ const Registrar = () => {
 
     return (
         <>
+            <AppBar />
             <Box
                 sx={{
                     display: "flex",

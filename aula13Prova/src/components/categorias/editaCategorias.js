@@ -10,6 +10,7 @@ import {
     Snackbar,
     Alert
 } from "@mui/material";
+import AppBar from "../materialUI/navBar"
 
 const EditaCategorias = () => {
 
@@ -96,6 +97,7 @@ const EditaCategorias = () => {
 
     return (
         <>
+        <AppBar />
             <Box
                 sx={{
                     display: "flex",

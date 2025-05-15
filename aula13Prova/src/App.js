@@ -21,7 +21,7 @@ import {
 } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline'
-import AppBar from "./components/materialUI/navBar"
+
 
 
 
@@ -41,13 +41,13 @@ const App = () => {
         <BrowserRouter>
         <CssBaseline />
         <title>Prova React</title>
-        <AppBar />
+
             <div>
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/registrar" element={<Registrar />} />
+                    <Route path="/" element={<Dashboard />} />
                     <Route element={<Middleware />}>
-                        <Route path="/" element={<Dashboard />} />
                         <Route path="/produtos" element={<Produtos />} />
                         <Route path="/categorias" element={<Categorias />} />
                         <Route path="/listaCategorias" element={<ListaCategorias />} />

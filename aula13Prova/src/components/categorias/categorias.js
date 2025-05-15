@@ -1,12 +1,15 @@
 import React, { useState } from "react"
 import axios from "axios"
 
-import {Box, 
-    Alert, 
-    TextField, 
-    Button, 
-    Typography, 
-    Snackbar} from '@mui/material'
+import {
+    Box,
+    Alert,
+    TextField,
+    Button,
+    Typography,
+    Snackbar
+} from '@mui/material'
+import AppBar from "../materialUI/navBar"
 
 const Categorias = () => {
     var [categoria, setCategoria] = useState('')
@@ -39,7 +42,7 @@ const Categorias = () => {
                 setErro(false)
                 setMensagem("Categoria cadastrada com sucesso.")
                 setOpen(true)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -53,6 +56,7 @@ const Categorias = () => {
 
     return (
         <>
+            <AppBar />
             <Box
                 sx={{
                     display: 'flex',

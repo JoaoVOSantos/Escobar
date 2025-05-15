@@ -15,6 +15,7 @@ import {
     Alert,
     Snackbar,
 } from "@mui/material"
+import AppBar from "../materialUI/navBar"
 
 const ListaVendas = () => {
 
@@ -45,7 +46,7 @@ const ListaVendas = () => {
             if (retorno.status === 200) {
                 setVendas(retorno.data)
                 console.log(retorno)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -78,7 +79,7 @@ const ListaVendas = () => {
                 setMensagem("Venda excluída com sucesso.");
                 setOpen(true);
                 listarVendas();
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -92,70 +93,72 @@ const ListaVendas = () => {
     };
 
     return (
+        <>
+        <AppBar />
+            <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
+                <Typography variant="h4" mb={3} textAlign="center">
+                    Lista de Vendas
+                </Typography>
 
-        <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
-            <Typography variant="h4" mb={3} textAlign="center">
-                Lista de Vendas
-            </Typography>
-
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead sx={{ bgcolor: "#1976d2" }}>
-                        <TableRow>
-                            <TableCell sx={{ color: "white" }}>ID Venda</TableCell>
-                            <TableCell sx={{ color: "white" }}>Cliente</TableCell>
-                            <TableCell sx={{ color: "white" }}>Usuário</TableCell>
-                            <TableCell sx={{ color: "white" }}>Data</TableCell>
-                            <TableCell sx={{ color: "white" }}>Produtos</TableCell>
-                            <TableCell sx={{ color: "white" }}>Excluir</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {vendas.map((venda, indice) => (
-                            <TableRow key={indice}>
-                                <TableCell>{venda._id}</TableCell>
-                                <TableCell>{venda.nomeCliente}</TableCell>
-                                <TableCell>{venda.usuario}</TableCell>
-                                <TableCell>{new Date(venda.data).toLocaleDateString('pt-BR')}</TableCell>
-                                <TableCell>
-                                    {venda.produtos.map((produto, i) => (
-                                        <Typography variant="body2" key={i}>
-                                            {produto.nome} - {produto.quantidade} - R${produto.preco}
-                                        </Typography>
-                                    ))}
-                                </TableCell>
-                                
-                                <TableCell>
-                                    <Button
-                                        onClick={() => excluirVendas(venda._id)}
-                                        variant="outlined"
-                                        color="error"
-                                        size="small"
-                                    >
-                                        Excluir
-                                    </Button>
-                                </TableCell>
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead sx={{ bgcolor: "#1976d2" }}>
+                            <TableRow>
+                                <TableCell sx={{ color: "white" }}>ID Venda</TableCell>
+                                <TableCell sx={{ color: "white" }}>Cliente</TableCell>
+                                <TableCell sx={{ color: "white" }}>Usuário</TableCell>
+                                <TableCell sx={{ color: "white" }}>Data</TableCell>
+                                <TableCell sx={{ color: "white" }}>Produtos</TableCell>
+                                <TableCell sx={{ color: "white" }}>Excluir</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {vendas.map((venda, indice) => (
+                                <TableRow key={indice}>
+                                    <TableCell>{venda._id}</TableCell>
+                                    <TableCell>{venda.nomeCliente}</TableCell>
+                                    <TableCell>{venda.usuario}</TableCell>
+                                    <TableCell>{new Date(venda.data).toLocaleDateString('pt-BR')}</TableCell>
+                                    <TableCell>
+                                        {venda.produtos.map((produto, i) => (
+                                            <Typography variant="body2" key={i}>
+                                                {produto.nome} - {produto.quantidade} - R${produto.preco}
+                                            </Typography>
+                                        ))}
+                                    </TableCell>
 
-            <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            >
-                <Alert
+                                    <TableCell>
+                                        <Button
+                                            onClick={() => excluirVendas(venda._id)}
+                                            variant="outlined"
+                                            color="error"
+                                            size="small"
+                                        >
+                                            Excluir
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
                     onClose={handleClose}
-                    severity={erro ? "error" : "success"}
-                    sx={{ width: "100%" }}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 >
-                    {mensagem}
-                </Alert>
-            </Snackbar>
-        </Box>
+                    <Alert
+                        onClose={handleClose}
+                        severity={erro ? "error" : "success"}
+                        sx={{ width: "100%" }}
+                    >
+                        {mensagem}
+                    </Alert>
+                </Snackbar>
+            </Box>
+        </>
 
         // <div>
         //     <h1>Vendas</h1>

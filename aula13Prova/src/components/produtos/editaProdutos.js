@@ -15,6 +15,7 @@ import {
     FormLabel,
     FormControl
 } from "@mui/material";
+import AppBar from "../materialUI/navBar"
 
 const EditaProdutos = () => {
     const navigate = useNavigate();
@@ -149,6 +150,7 @@ const EditaProdutos = () => {
 
     return (
         <>
+        <AppBar />
             <Box
                 sx={{
                     display: "flex",

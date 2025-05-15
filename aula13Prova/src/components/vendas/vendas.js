@@ -14,6 +14,7 @@ import {
     CardMedia,
     Grid,
 } from "@mui/material";
+import AppBar from "../materialUI/navBar"
 
 const Vendas = () => {
     const [mensagem, setMensagem] = useState("");
@@ -97,6 +98,7 @@ const Vendas = () => {
 
     return (
         <>
+        <AppBar />
             <Box
                 sx={{
                     display: "flex",

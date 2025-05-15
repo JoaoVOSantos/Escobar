@@ -15,6 +15,7 @@ import {
     Snackbar,
     Alert
 } from "@mui/material"
+import AppBar from "../materialUI/navBar"
 
 const ListarCategoria = () => {
 
@@ -76,7 +77,7 @@ const ListarCategoria = () => {
                 setMensagem("Categoria excluída com sucesso.");
                 setOpen(true);
                 listarCategoria();
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -90,70 +91,73 @@ const ListarCategoria = () => {
     };
 
     return (
-        <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
-            <Typography variant="h4" mb={3} textAlign="center">
-                Lista de Categorias
-            </Typography>
+        <>
+            <AppBar />
+            <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
+                <Typography variant="h4" mb={3} textAlign="center">
+                    Lista de Categorias
+                </Typography>
 
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead sx={{ bgcolor: "#1976d2" }}>
-                        <TableRow>
-                            <TableCell sx={{ color: "white" }}>ID</TableCell>
-                            <TableCell sx={{ color: "white" }}>Nome da Categoria</TableCell>
-                            <TableCell sx={{ color: "white" }}>Usuário</TableCell>
-                            <TableCell sx={{ color: "white" }}>Editar</TableCell>
-                            <TableCell sx={{ color: "white" }}>Excluir</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {categorias.map((categoria, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{categoria._id}</TableCell>
-                                <TableCell>{categoria.nome}</TableCell>
-                                <TableCell>{categoria.usuario}</TableCell>
-                                <TableCell>
-                                    <Button
-                                        component={Link}
-                                        to={`/editaCategorias/${categoria._id}`}
-                                        variant="outlined"
-                                        color="primary"
-                                        size="small"
-                                    >
-                                        Editar
-                                    </Button>
-                                </TableCell>
-                                <TableCell>
-                                    <Button
-                                        variant="outlined"
-                                        color="error"
-                                        size="small"
-                                        onClick={() => excluirCategoria(categoria._id)}
-                                    >
-                                        Excluir
-                                    </Button>
-                                </TableCell>
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead sx={{ bgcolor: "#1976d2" }}>
+                            <TableRow>
+                                <TableCell sx={{ color: "white" }}>ID</TableCell>
+                                <TableCell sx={{ color: "white" }}>Nome da Categoria</TableCell>
+                                <TableCell sx={{ color: "white" }}>Usuário</TableCell>
+                                <TableCell sx={{ color: "white" }}>Editar</TableCell>
+                                <TableCell sx={{ color: "white" }}>Excluir</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {categorias.map((categoria, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{categoria._id}</TableCell>
+                                    <TableCell>{categoria.nome}</TableCell>
+                                    <TableCell>{categoria.usuario}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            component={Link}
+                                            to={`/editaCategorias/${categoria._id}`}
+                                            variant="outlined"
+                                            color="primary"
+                                            size="small"
+                                        >
+                                            Editar
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            size="small"
+                                            onClick={() => excluirCategoria(categoria._id)}
+                                        >
+                                            Excluir
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
-            <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            >
-                <Alert
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
                     onClose={handleClose}
-                    severity={erro ? "error" : "success"}
-                    sx={{ width: "100%" }}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 >
-                    {mensagem}
-                </Alert>
-            </Snackbar>
-        </Box>
+                    <Alert
+                        onClose={handleClose}
+                        severity={erro ? "error" : "success"}
+                        sx={{ width: "100%" }}
+                    >
+                        {mensagem}
+                    </Alert>
+                </Snackbar>
+            </Box>
+        </>
         // <div>
         //     <h1>Categorias</h1>
 

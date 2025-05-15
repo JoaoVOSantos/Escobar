@@ -8,6 +8,7 @@ import {
     Typography,
     Snackbar,
 } from "@mui/material";
+import AppBar from "./materialUI/navBar"
 
 import { useNavigate } from 'react-router-dom';
 
@@ -47,7 +48,7 @@ const Login = () => {
                 setTimeout(() => {
                     navigate('/');
                 }, 1500);
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -62,6 +63,7 @@ const Login = () => {
 
     return (
         <>
+            <AppBar />
             <Box
                 sx={{
                     display: "flex",

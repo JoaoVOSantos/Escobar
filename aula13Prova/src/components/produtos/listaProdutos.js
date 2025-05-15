@@ -16,6 +16,7 @@ import {
     Snackbar,
     Alert
 } from "@mui/material"
+import AppBar from "../materialUI/navBar"
 
 
 const ListaProdutos = () => {
@@ -44,7 +45,7 @@ const ListaProdutos = () => {
             }
             if (retorno.status === 200) {
                 setProdutos(retorno.data)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -73,7 +74,7 @@ const ListaProdutos = () => {
             }
             if (retorno.status === 200) {
                 setProdutos(retorno.data)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -105,7 +106,7 @@ const ListaProdutos = () => {
                 setMensagem("Produto excluído com sucesso.");
                 setOpen(true);
                 listarProdutos();
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -123,97 +124,101 @@ const ListaProdutos = () => {
     }, [])
 
     return (
-        <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
-            <Typography variant="h4" mb={3} textAlign="center">
-                Lista de Produtos
-            </Typography>
+        <>
+            <AppBar />
+            <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
 
-            <TableContainer component={Paper}>
-                <TextField
-                    label="Buscar produto por nome"
-                    variant="outlined"
-                    fullWidth
-                    sx={{ mb: 2 }}
-                    value={busca}
-                    onChange={(e) => {
-                        const nome = e.target.value;
-                        setBusca(nome);
-                        buscarPorNome(nome); // busca a cada mudança
-                    }}
-                />
-                <Table>
-                    <TableHead sx={{ bgcolor: "#1976d2" }}>
-                        <TableRow>
-                            <TableCell sx={{ color: "white" }}>ID</TableCell>
-                            <TableCell sx={{ color: "white" }}>Usuário</TableCell>
-                            <TableCell sx={{ color: "white" }}>Nome</TableCell>
-                            <TableCell sx={{ color: "white" }}>Descrição</TableCell>
-                            <TableCell sx={{ color: "white" }}>Categoria</TableCell>
-                            <TableCell sx={{ color: "white" }}>Imagem</TableCell>
-                            <TableCell sx={{ color: "white" }}>Preço</TableCell>
-                            <TableCell sx={{ color: "white" }}>Quantidade</TableCell>
-                            <TableCell sx={{ color: "white" }}>Editar</TableCell>
-                            <TableCell sx={{ color: "white" }}>Excluir</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {produtos.map((produto, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{produto._id}</TableCell>
-                                <TableCell>{produto.usuario}</TableCell>
-                                <TableCell>{produto.nome}</TableCell>
-                                <TableCell>{produto.descricao}</TableCell>
-                                <TableCell>{produto.categoria}</TableCell>
-                                <TableCell>
-                                    <img
-                                        src={produto.imagem}
-                                        alt={produto.nome}
-                                        style={{ width: "100px", height: "75px", objectFit: "cover", borderRadius: "4px" }}
-                                    />
-                                </TableCell>
-                                <TableCell>R$ {produto.preco}</TableCell>
-                                <TableCell>{produto.quantidade}</TableCell>
-                                <TableCell>
-                                    <Button
-                                        component={Link}
-                                        to={`/editaProdutos/${produto._id}`}
-                                        variant="outlined"
-                                        color="primary"
-                                        size="small"
-                                    >
-                                        Editar
-                                    </Button>
-                                </TableCell>
-                                <TableCell>
-                                    <Button
-                                        onClick={() => excluirProduto(produto._id)}
-                                        variant="outlined"
-                                        color="error"
-                                        size="small"
-                                    >
-                                        Excluir
-                                    </Button>
-                                </TableCell>
+                <Typography variant="h4" mb={3} textAlign="center">
+                    Lista de Produtos
+                </Typography>
+
+                <TableContainer component={Paper}>
+                    <TextField
+                        label="Buscar produto por nome"
+                        variant="outlined"
+                        fullWidth
+                        sx={{ mb: 2 }}
+                        value={busca}
+                        onChange={(e) => {
+                            const nome = e.target.value;
+                            setBusca(nome);
+                            buscarPorNome(nome); // busca a cada mudança
+                        }}
+                    />
+                    <Table>
+                        <TableHead sx={{ bgcolor: "#1976d2" }}>
+                            <TableRow>
+                                <TableCell sx={{ color: "white" }}>ID</TableCell>
+                                <TableCell sx={{ color: "white" }}>Usuário</TableCell>
+                                <TableCell sx={{ color: "white" }}>Nome</TableCell>
+                                <TableCell sx={{ color: "white" }}>Descrição</TableCell>
+                                <TableCell sx={{ color: "white" }}>Categoria</TableCell>
+                                <TableCell sx={{ color: "white" }}>Imagem</TableCell>
+                                <TableCell sx={{ color: "white" }}>Preço</TableCell>
+                                <TableCell sx={{ color: "white" }}>Quantidade</TableCell>
+                                <TableCell sx={{ color: "white" }}>Editar</TableCell>
+                                <TableCell sx={{ color: "white" }}>Excluir</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            >
-                <Alert
+                        </TableHead>
+                        <TableBody>
+                            {produtos.map((produto, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{produto._id}</TableCell>
+                                    <TableCell>{produto.usuario}</TableCell>
+                                    <TableCell>{produto.nome}</TableCell>
+                                    <TableCell>{produto.descricao}</TableCell>
+                                    <TableCell>{produto.categoria}</TableCell>
+                                    <TableCell>
+                                        <img
+                                            src={produto.imagem}
+                                            alt={produto.nome}
+                                            style={{ width: "100px", height: "75px", objectFit: "cover", borderRadius: "4px" }}
+                                        />
+                                    </TableCell>
+                                    <TableCell>R$ {produto.preco}</TableCell>
+                                    <TableCell>{produto.quantidade}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            component={Link}
+                                            to={`/editaProdutos/${produto._id}`}
+                                            variant="outlined"
+                                            color="primary"
+                                            size="small"
+                                        >
+                                            Editar
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button
+                                            onClick={() => excluirProduto(produto._id)}
+                                            variant="outlined"
+                                            color="error"
+                                            size="small"
+                                        >
+                                            Excluir
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
                     onClose={handleClose}
-                    severity={erro ? "error" : "success"}
-                    sx={{ width: "100%" }}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 >
-                    {mensagem}
-                </Alert>
-            </Snackbar>
-        </Box>
+                    <Alert
+                        onClose={handleClose}
+                        severity={erro ? "error" : "success"}
+                        sx={{ width: "100%" }}
+                    >
+                        {mensagem}
+                    </Alert>
+                </Snackbar>
+            </Box>
+        </>
         // <div>
         //     <h1>Produtos</h1>
 
@@ -250,6 +255,7 @@ const ListaProdutos = () => {
         //         </tbody>
         //     </table>
         // </div>
+
     )
 }
 
