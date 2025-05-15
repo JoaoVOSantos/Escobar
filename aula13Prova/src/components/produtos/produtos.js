@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Alert,
@@ -26,7 +26,7 @@ const Produtos = () => {
     var [imagem, setImagem] = useState('')
 
     var [categorias, setCategorias] = useState([])
-
+    const navigate = useNavigate();
     const [mensagem, setMensagem] = useState('');
     const [open, setOpen] = useState(false);
     const [erro, setErro] = useState(false);
@@ -53,7 +53,7 @@ const Produtos = () => {
             if (retorno.status === 200) {
                 setCategorias(retorno.data)
                 console.log(retorno.data)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -90,7 +90,10 @@ const Produtos = () => {
                 setErro(false)
                 setMensagem("Produto cadastrado com sucesso.")
                 setOpen(true)
-            }else{
+                setTimeout(() => {
+                    navigate('/listaProdutos');
+                }, 750);
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -106,7 +109,7 @@ const Produtos = () => {
         // "div" vazia pq tem que retornar apenas uma div
         // Conhecido como  Fragmento React ou Fragment
         <>
-                <AppBar />
+            <AppBar />
             {/* "Div" da tela inteira  */}
             <Box
                 sx={{

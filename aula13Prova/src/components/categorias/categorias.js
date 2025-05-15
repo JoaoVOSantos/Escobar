@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Alert,
@@ -12,6 +12,7 @@ import {
 import AppBar from "../materialUI/navBar"
 
 const Categorias = () => {
+    const navigate = useNavigate();
     var [categoria, setCategoria] = useState('')
     const [mensagem, setMensagem] = useState('')
     const [open, setOpen] = useState(false)
@@ -42,6 +43,9 @@ const Categorias = () => {
                 setErro(false)
                 setMensagem("Categoria cadastrada com sucesso.")
                 setOpen(true)
+                setTimeout(() => {
+                    navigate('/listaCategorias');
+                }, 750);
             } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")

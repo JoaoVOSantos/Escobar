@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Typography,
@@ -20,7 +21,7 @@ const Vendas = () => {
     const [mensagem, setMensagem] = useState("");
     const [open, setOpen] = useState(false);
     const [erro, setErro] = useState(false);
-
+    const navigate = useNavigate();
     var [nome, setNome] = useState('')
     var [data, setData] = useState('')
     var [produtos, setProdutos] = useState([])
@@ -50,9 +51,9 @@ const Vendas = () => {
                 setErro(false);
                 setMensagem("Venda cadastrada com sucesso.");
                 setOpen(true);
-                setNome("");
-                setData("");
-                setProdutosVendidos([]);
+                setTimeout(() => {
+                    navigate('/listaVendas');
+                }, 750);
                 console.log(retorno)
             }else{
                 setErro(true);
