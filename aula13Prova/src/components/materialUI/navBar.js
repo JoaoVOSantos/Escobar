@@ -39,6 +39,7 @@ const NavBar = () => {
 
     const logout = () => {
         localStorage.removeItem("ALUNO_ITE")
+        localStorage.removeItem("USUARIO")
         setTimeout(() => {
             navigate('/login');
         }, 100);

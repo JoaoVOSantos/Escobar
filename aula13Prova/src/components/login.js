@@ -45,6 +45,7 @@ const Login = () => {
                 setMensagem("Login efetuado com sucesso.");
                 setOpen(true);
                 localStorage.setItem("ALUNO_ITE", retorno.data.token)
+                localStorage.setItem("USUARIO", usuario)
                 setTimeout(() => {
                     navigate('/');
                 }, 1500);

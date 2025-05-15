@@ -22,7 +22,7 @@ import AppBar from "../materialUI/navBar"
 const ListaProdutos = () => {
 
     var [produtos, setProdutos] = useState([])
-
+    var usuario = localStorage.getItem("USUARIO")
     const [mensagem, setMensagem] = useState("")
     const [open, setOpen] = useState(false)
     const [erro, setErro] = useState(false)
@@ -30,7 +30,7 @@ const ListaProdutos = () => {
 
 
     const listarProdutos = async () => {
-        var url = "https://backend-completo.vercel.app/app/produtos"
+        var url = `https://backend-completo.vercel.app/app/produtos/${usuario}`
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.get(
@@ -54,7 +54,7 @@ const ListaProdutos = () => {
     }
 
     const buscarPorNome = async (nome) => {
-        var url = `https://backend-completo.vercel.app/app/produtos/${nome}`
+        var url = `https://backend-completo.vercel.app/app/produtos/${usuario}/${nome}`
         var token = localStorage.getItem("ALUNO_ITE")
 
         if (nome.trim() === "") {

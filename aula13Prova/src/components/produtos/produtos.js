@@ -24,7 +24,6 @@ const Produtos = () => {
     var [categoria, setCategoria] = useState('')
     var [descricao, setDescricao] = useState('')
     var [imagem, setImagem] = useState('')
-
     var [categorias, setCategorias] = useState([])
     const navigate = useNavigate();
     const [mensagem, setMensagem] = useState('');
@@ -63,7 +62,7 @@ const Produtos = () => {
 
 
     const cadastrarProduto = async () => {
-        var url = "https://backend-completo.vercel.app/app/produtos"
+        var url = `https://backend-completo.vercel.app/app/produtos`
         var dados = {
             nome: nome,
             quantidade: quantidade,

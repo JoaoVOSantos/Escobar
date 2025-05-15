@@ -18,6 +18,7 @@ import {
 import AppBar from "../materialUI/navBar"
 
 const Vendas = () => {
+    var usuario = localStorage.getItem("USUARIO")
     const [mensagem, setMensagem] = useState("");
     const [open, setOpen] = useState(false);
     const [erro, setErro] = useState(false);
@@ -64,12 +65,8 @@ const Vendas = () => {
     }
 
 
-    useEffect(() => {
-        listarProdutos();
-    }, []);
-
     const listarProdutos = async () => {
-        var url = "https://backend-completo.vercel.app/app/produtos"
+        var url = `https://backend-completo.vercel.app/app/produtos/${usuario}`
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.get(
@@ -92,6 +89,10 @@ const Vendas = () => {
         })
 
     }
+
+    useEffect(() => {
+        listarProdutos();
+    }, []);
 
     const handleClose = () => {
         setOpen(false);
