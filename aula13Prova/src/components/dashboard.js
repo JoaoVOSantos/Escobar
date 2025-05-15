@@ -121,7 +121,7 @@ const Dashboard = () => {
 
             <Box sx={{ p: 4, textAlign: 'center', bgcolor: '#e8eaf6' }}>
                 <Typography variant="h6">Linguagens e Tecnologias</Typography>
-                <Typography variant="body2">React • JavaScript • Material UI • Axios</Typography>
+                <Typography variant="body2">React • Material UI</Typography>
             </Box>
 
             <Box sx={{ p: 2, display: 'flex', justifyContent: 'center', gap: 3 }}>
