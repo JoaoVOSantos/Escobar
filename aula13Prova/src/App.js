@@ -21,6 +21,7 @@ import {
 } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline'
+import FinalizarCompra from './finalizarCompra';
 
 
 
@@ -56,6 +57,7 @@ const App = () => {
                         <Route path="/editaCategorias/:codigoCategoria" element={<EditaCategorias />} />
                         <Route path="/vendas" element={<Vendas />} />
                         <Route path="/listaVendas" element={<ListaVendas />} />
+                        <Route path="/finalizarCompra" element={<FinalizarCompra />} />
                     </Route>
                 </Routes>
             </div>
