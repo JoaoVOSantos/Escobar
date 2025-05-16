@@ -20,7 +20,7 @@ import AppBar from "../materialUI/navBar"
 const ListaVendas = () => {
 
     var [vendas, setVendas] = useState([])
-
+    var usuario = localStorage.getItem("USUARIO")
     const [mensagem, setMensagem] = useState("")
     const [open, setOpen] = useState(false)
     const [erro, setErro] = useState(false)
@@ -31,7 +31,7 @@ const ListaVendas = () => {
     }, [])
 
     const listarVendas = async () => {
-        var url = "https://backend-completo.vercel.app/app/venda"
+        var url = `https://backend-completo.vercel.app/app/venda`
         var token = localStorage.getItem("ALUNO_ITE")
         await axios.get(
             url,
@@ -94,7 +94,7 @@ const ListaVendas = () => {
 
     return (
         <>
-        <AppBar />
+            <AppBar />
             <Box sx={{ p: 4, bgcolor: "#f5f5f5", minHeight: "100vh" }}>
                 <Typography variant="h4" mb={3} textAlign="center">
                     Lista de Vendas

@@ -29,7 +29,7 @@ const Vendas = () => {
     const [produtosVendidos, setProdutosVendidos] = useState([])
 
     const cadastrarVenda = async () => {
-        var url = "https://backend-completo.vercel.app/app/venda"
+        var url = `https://backend-completo.vercel.app/app/venda`
         var dados = {
             nomeCliente: nome,
             data: data,
