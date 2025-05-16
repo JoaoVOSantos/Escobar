@@ -20,6 +20,8 @@ import AppBar from "../materialUI/navBar"
 const EditaProdutos = () => {
     const navigate = useNavigate();
 
+
+    var usuario = localStorage.getItem("USUARIO")
     const [mensagem, setMensagem] = useState("");
     const [open, setOpen] = useState(false);
     const [erro, setErro] = useState(false);
@@ -62,7 +64,7 @@ const EditaProdutos = () => {
     }
 
     const listaProdutos = async () => {
-        var url = "https://backend-completo.vercel.app/app/produtos"
+        var url = `https://backend-completo.vercel.app/app/produtos/${usuario}`
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.get(
@@ -74,6 +76,8 @@ const EditaProdutos = () => {
                 return
             }
             if (retorno.status === 200 && Array.isArray(retorno.data)) {
+
+                console.log(retorno)
 
                 const produtoSelecionado = retorno.data.find(prod =>
                     prod._id === codigoProduto);
@@ -87,6 +91,8 @@ const EditaProdutos = () => {
                 setDescricao(produtoSelecionado.descricao);
                 setImagem(produtoSelecionado.imagem)
 
+
+                
                 
 
             }else{
