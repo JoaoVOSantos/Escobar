@@ -33,6 +33,8 @@ const Dashboard = () => {
     // guarda os produtos e as quantidades selecionadas do produto em um array
     var [produtosVendidos, setProdutosVendidos] = useState([])
 
+
+
     // variavel para controlar a categoria selecionada
 
     var [produtosFiltrados, setProdutosFiltrados] = useState([])
@@ -77,6 +79,13 @@ const Dashboard = () => {
                 setProdutosFiltrados(retorno.data)
             }
         })
+    }
+
+    const finalizar = () => {
+        localStorage.setItem("COMPRAS", JSON.stringify(produtosVendidos))
+        setTimeout(() => {
+            navigate('/finalizarCompra')
+        }, 1500);
     }
 
     useEffect(() => {
@@ -194,6 +203,7 @@ const Dashboard = () => {
                                                                     _id: produto._id,
                                                                     nome: produto.nome,
                                                                     preco: produto.preco,
+                                                                    imagem: produto.imagem,
                                                                     // seta a quantidade em 1, que sera mudada posteriormente
                                                                     quantidade: 1,
                                                                 }
@@ -246,7 +256,9 @@ const Dashboard = () => {
                                                 fullWidth
                                                 sx={{ mt: 2 }}
                                             />
+
                                         )}
+
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -259,7 +271,10 @@ const Dashboard = () => {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => navigate("/finalizar-compra")}
+                    onClick={() => finalizar()}
+                    // desabilita o botao se o array de produtos for vazio(zero),
+                    // disabled funcao do MaterialUI
+                    disabled={produtosVendidos.length === 0}
                 >
                     Comprar Produtos Selecionados
                 </Button>
