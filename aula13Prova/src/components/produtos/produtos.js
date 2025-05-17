@@ -122,12 +122,15 @@ const Produtos = () => {
                 {/* "Div" envolvendo todo o conteudo */}
                 <Box
                     sx={{
-                        width: 400,
+                        width: '90%',
+                        maxWidth: 500,
                         p: 4,
                         borderRadius: 2,
-                        border: '2px solid #1976d2',
-                        bgcolor: 'white',
-                        textAlign: 'center',
+                        border: "2px solid #1976d2",
+                        bgcolor: "white",
+                        textAlign: "center",
+                        wordWrap: "break-word",
+                        overflowWrap: "break-word",
                     }}
                 >
                     {/* Titulo */}
@@ -187,18 +190,14 @@ const Produtos = () => {
                             alignItems: 'flex-start',
                         }}
                     >
-                        {/* Titulo */}
                         <FormLabel component="legend">Categorias</FormLabel>
-                        {/* Radio Group com as Categorias */}
-                        <RadioGroup
-                            onChange={(e) => setCategoria(e.target.value)}
-                        >
+                        <RadioGroup onChange={(e) => setCategoria(e.target.value)}>
                             <Box
                                 sx={{
                                     display: 'grid',
-                                    gridTemplateColumns: '1fr 1fr',
+                                    gridTemplateColumns: '1fr 1fr 1fr', // Agora são 3 colunas
                                     gap: 1,
-                                    pl: 1
+                                    pl: 1,
                                 }}
                             >
                                 {categorias.map((categoria, index) => (
@@ -208,18 +207,16 @@ const Produtos = () => {
                                         control={<Radio />}
                                         label={categoria.nome}
                                         sx={
-                                            categorias.length % 2 === 1 && index === categorias.length - 1
-                                                ? {
-                                                    gridColumn: '1 / -1',
-                                                    justifySelf: 'center'
-                                                }
-                                                : {}
+                                            categorias.length % 3 === 1 && index === categorias.length - 1
+                                                ? { gridColumn: '2 / 3', justifySelf: 'center' }
+                                                : categorias.length % 3 === 2 && index === categorias.length - 1
+                                                    ? { gridColumn: '3 / 4', justifySelf: 'center' }
+                                                    : {}
                                         }
                                     />
                                 ))}
                             </Box>
                         </RadioGroup>
-
                     </FormControl>
 
                     {/* Botao Cadastrar com OnClick */}

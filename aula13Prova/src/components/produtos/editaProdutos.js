@@ -55,7 +55,7 @@ const EditaProdutos = () => {
             if (retorno.status === 200) {
                 // Esta certo
                 setCategorias(retorno.data)
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -81,7 +81,7 @@ const EditaProdutos = () => {
 
                 const produtoSelecionado = retorno.data.find(prod =>
                     prod._id === codigoProduto);
-                
+
                 // Esta certo
                 // setId(produtoSelecionado._id);
                 setNome(produtoSelecionado.nome);
@@ -92,10 +92,10 @@ const EditaProdutos = () => {
                 setImagem(produtoSelecionado.imagem)
 
 
-                
-                
 
-            }else{
+
+
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -137,7 +137,7 @@ const EditaProdutos = () => {
                 setTimeout(() => {
                     navigate('/listaProdutos');
                 }, 1500);
-            }else{
+            } else {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
@@ -156,7 +156,7 @@ const EditaProdutos = () => {
 
     return (
         <>
-        <AppBar />
+            <AppBar />
             <Box
                 sx={{
                     display: "flex",
@@ -168,12 +168,16 @@ const EditaProdutos = () => {
             >
                 <Box
                     sx={{
-                        width: 400,
+                        mt: 2,
+                        width: '90%',
+                        maxWidth: 500,
                         p: 4,
                         borderRadius: 2,
                         border: "2px solid #1976d2",
                         bgcolor: "white",
                         textAlign: "center",
+                        wordWrap: "break-word",
+                        overflowWrap: "break-word",
                     }}
                 >
                     <Typography variant="h5" mb={2}>
@@ -208,14 +212,22 @@ const EditaProdutos = () => {
                             value={categoria}
                             onChange={(e) => setCategoria(e.target.value)}
                         >
-                            {categorias.map((cat) => (
-                                <FormControlLabel
-                                    key={cat._id}
-                                    value={cat.nome}
-                                    control={<Radio />}
-                                    label={cat.nome}
-                                />
-                            ))}
+                            <Box
+                                sx={{
+                                    display: "grid",
+                                    gridTemplateColumns: "repeat(3, 1fr)",
+                                    gap: 1,
+                                }}
+                            >
+                                {categorias.map((cat) => (
+                                    <FormControlLabel
+                                        key={cat._id}
+                                        value={cat.nome}
+                                        control={<Radio />}
+                                        label={cat.nome}
+                                    />
+                                ))}
+                            </Box>
                         </RadioGroup>
                     </FormControl>
                     <TextField
