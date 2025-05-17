@@ -21,14 +21,14 @@ const ListarCategoria = () => {
 
     var [categorias, setCategorias] = useState([])
 
-    const [mensagem, setMensagem] = useState("");
-    const [open, setOpen] = useState(false);
-    const [erro, setErro] = useState(false);
+    const [mensagem, setMensagem] = useState("")
+    const [open, setOpen] = useState(false)
+    const [erro, setErro] = useState(false)
 
 
     useEffect(() => {
         listarCategoria()
-    }, [])
+    },)
 
 
     const listarCategoria = async () => {
@@ -67,14 +67,14 @@ const ListarCategoria = () => {
 
         }).then(retorno => {
             if (retorno.data.erro) {
-                setErro(true);
-                setMensagem(retorno.data.erro);
-                setOpen(true);
+                setErro(true)
+                setMensagem(retorno.data.erro)
+                setOpen(true)
                 return
             }
             if (retorno.status === 200) {
                 setErro(false);
-                setMensagem("Categoria excluída com sucesso.");
+                setMensagem("Categoria excluída com sucesso.")
                 setOpen(true);
                 listarCategoria();
             } else {
@@ -87,8 +87,8 @@ const ListarCategoria = () => {
     }
 
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     return (
         <>

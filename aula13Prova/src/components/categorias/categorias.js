@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import {
     Box,
     Alert,
@@ -12,8 +12,10 @@ import {
 import AppBar from "../materialUI/navBar"
 
 const Categorias = () => {
-    const navigate = useNavigate();
+
     var [categoria, setCategoria] = useState('')
+
+    const navigate = useNavigate();
     const [mensagem, setMensagem] = useState('')
     const [open, setOpen] = useState(false)
     const [erro, setErro] = useState(false)
@@ -24,7 +26,6 @@ const Categorias = () => {
         var dados = {
             nome_categoria: categoria,
         }
-
         var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.post(
@@ -44,19 +45,15 @@ const Categorias = () => {
                 setMensagem("Categoria cadastrada com sucesso.")
                 setOpen(true)
                 setTimeout(() => {
-                    navigate('/listaCategorias');
-                }, 750);
-            } else {
-                setErro(true);
-                setMensagem("Conexão com Servidor Falhou")
-                setOpen(true);
+                    navigate('/listaCategorias')
+                }, 750)
             }
         })
 
     }
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     return (
         <>
@@ -66,7 +63,7 @@ const Categorias = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    minHeight: 'calc(100vh - 72px)', // considera a altura da NavBar
+                    minHeight: 'calc(100vh - 72px)',
                     bgcolor: '#f0f0f0',
                 }}
             >

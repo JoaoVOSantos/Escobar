@@ -64,6 +64,10 @@ const Vendas = () => {
     }
 
 
+    useEffect(() => {
+        listarProdutos()
+    },)
+
     const listarProdutos = async () => {
         var url = `https://backend-completo.vercel.app/app/produtos/${usuario}`
         var token = localStorage.getItem("ALUNO_ITE")
@@ -89,9 +93,6 @@ const Vendas = () => {
 
     }
 
-    useEffect(() => {
-        listarProdutos();
-    }, []);
 
     const handleClose = () => {
         setOpen(false);

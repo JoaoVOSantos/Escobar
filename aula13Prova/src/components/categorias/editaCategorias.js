@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react"
+import axios from "axios"
+import { useParams, useNavigate } from 'react-router-dom'
 
 import {
     Box,
@@ -9,20 +9,18 @@ import {
     Typography,
     Snackbar,
     Alert
-} from "@mui/material";
+} from "@mui/material"
 import AppBar from "../materialUI/navBar"
 
 const EditaCategorias = () => {
 
-    const navigate = useNavigate();
-
-    const { codigoCategoria } = useParams()
     var [categoria, setCategoria] = useState('')
 
-    const [mensagem, setMensagem] = useState('');
-    const [erro, setErro] = useState(false);
-    const [open, setOpen] = useState(false);
-
+    const navigate = useNavigate()
+    const { codigoCategoria } = useParams()
+    const [mensagem, setMensagem] = useState('')
+    const [erro, setErro] = useState(false)
+    const [open, setOpen] = useState(false)
 
     const editaCategorias = async () => {
         var url = "https://backend-completo.vercel.app/app/categorias"
@@ -38,24 +36,24 @@ const EditaCategorias = () => {
             { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
             if (retorno.data.error) {
-                setErro(true);
-                setMensagem(retorno.data.error);
-                setOpen(true);
+                setErro(true)
+                setMensagem(retorno.data.error)
+                setOpen(true)
                 return
             }
             if (retorno.status === 200) {
-                setErro(false);
-                setMensagem("Categoria editada com sucesso.");
-                setOpen(true);
+                setErro(false)
+                setMensagem("Categoria editada com sucesso.")
+                setOpen(true)
 
                 setTimeout(() => {
-                    navigate('/listaCategorias');
-                }, 1500);
+                    navigate('/listaCategorias')
+                }, 1500)
 
-            }else{
-                setErro(true);
+            } else {
+                setErro(true)
                 setMensagem("Conexão com Servidor Falhou")
-                setOpen(true);
+                setOpen(true)
             }
         })
     }
@@ -76,12 +74,12 @@ const EditaCategorias = () => {
 
                 const categoriaSelecionada = retorno.data.find(cat =>
                     cat._id === codigoCategoria);
-                    setCategoria(categoriaSelecionada.nome)
+                setCategoria(categoriaSelecionada.nome)
 
-            }else{
-                setErro(true);
+            } else {
+                setErro(true)
                 setMensagem("Conexão com Servidor Falhou")
-                setOpen(true);
+                setOpen(true)
             }
         })
     }
@@ -89,15 +87,15 @@ const EditaCategorias = () => {
 
     useEffect(() => {
         listaCategorias()
-    }, [])
+    },)
 
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     return (
         <>
-        <AppBar />
+            <AppBar />
             <Box
                 sx={{
                     display: "flex",

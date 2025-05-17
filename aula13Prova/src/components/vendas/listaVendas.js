@@ -20,7 +20,6 @@ import AppBar from "../materialUI/navBar"
 const ListaVendas = () => {
 
     var [vendas, setVendas] = useState([])
-    var usuario = localStorage.getItem("USUARIO")
     const [mensagem, setMensagem] = useState("")
     const [open, setOpen] = useState(false)
     const [erro, setErro] = useState(false)

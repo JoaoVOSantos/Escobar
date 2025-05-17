@@ -29,6 +29,10 @@ const ListaProdutos = () => {
     const [busca, setBusca] = useState("");
 
 
+    useEffect(() => {
+        listarProdutos()
+    },)
+
     const listarProdutos = async () => {
         var url = `https://backend-completo.vercel.app/app/produtos/${usuario}`
         var token = localStorage.getItem("ALUNO_ITE")
@@ -119,9 +123,7 @@ const ListaProdutos = () => {
     const handleClose = () => {
         setOpen(false)
     };
-    useEffect(() => {
-        listarProdutos()
-    }, [])
+
 
     return (
         <>
