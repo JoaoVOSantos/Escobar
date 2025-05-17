@@ -32,9 +32,9 @@ const Vendas = () => {
 
     const cadastrarVenda = async () => {
         var url = `https://backend-completo.vercel.app/app/venda`
-        var token = localStorage.getItem("ALUNO_ITE")
         
         var dados = {
+            usuario: "010623044",
             nomeCliente: nome,
             data: data,
             produtos: produtosVendidos
@@ -43,7 +43,6 @@ const Vendas = () => {
         await axios.post(
             url,
             dados,
-            { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
             if (retorno.data.error) {
                 setErro(true);

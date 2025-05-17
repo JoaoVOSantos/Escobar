@@ -42,15 +42,12 @@ const FinalizarCompra = () => {
     }, []);
 
     const finalizarCompra = async () => {
-        if (!nomeCliente) {
-            setErro(true)
-            setMensagem("Digite o Nome do Cliente");
-            setOpen(true)
-            return
-        }
 
         var url = "https://backend-completo.vercel.app/app/venda"
+
+        var usuario = localStorage.getItem("USUARIO")
         var dados = {
+            usuario: usuario,
             nomeCliente: nomeCliente,
             data: dataAtual,
             produtos: produtos

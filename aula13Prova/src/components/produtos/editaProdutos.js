@@ -152,7 +152,7 @@ const EditaProdutos = () => {
     useEffect(() => {
         listaProdutos()
         listaCategorias()
-    },)
+    },[])
 
     return (
         <>

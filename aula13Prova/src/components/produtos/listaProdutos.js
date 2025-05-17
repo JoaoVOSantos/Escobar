@@ -31,7 +31,7 @@ const ListaProdutos = () => {
 
     useEffect(() => {
         listarProdutos()
-    },)
+    },[])
 
     const listarProdutos = async () => {
         var url = `https://backend-completo.vercel.app/app/produtos/${usuario}`
@@ -74,6 +74,7 @@ const ListaProdutos = () => {
                 setErro(true);
                 setMensagem(retorno.data.error);
                 setOpen(true);
+                console.log(retorno)
                 return
             }
             if (retorno.status === 200) {
@@ -82,6 +83,7 @@ const ListaProdutos = () => {
                 setErro(true);
                 setMensagem("Conexão com Servidor Falhou")
                 setOpen(true);
+                
             }
         })
     }

@@ -87,7 +87,7 @@ const EditaCategorias = () => {
 
     useEffect(() => {
         listaCategorias()
-    },)
+    },[])
 
     const handleClose = () => {
         setOpen(false)
