@@ -19,10 +19,12 @@ import AppBar from "../materialUI/navBar"
 
 const Vendas = () => {
     var usuario = localStorage.getItem("USUARIO")
-    const [mensagem, setMensagem] = useState("");
-    const [open, setOpen] = useState(false);
-    const [erro, setErro] = useState(false);
-    const navigate = useNavigate();
+
+    const [mensagem, setMensagem] = useState("")
+    const [open, setOpen] = useState(false)
+    const [erro, setErro] = useState(false)
+    const navigate = useNavigate()
+
     var [nome, setNome] = useState('')
     var [data, setData] = useState('')
     var [produtos, setProdutos] = useState([])
@@ -30,12 +32,13 @@ const Vendas = () => {
 
     const cadastrarVenda = async () => {
         var url = `https://backend-completo.vercel.app/app/venda`
+        var token = localStorage.getItem("ALUNO_ITE")
+        
         var dados = {
             nomeCliente: nome,
             data: data,
             produtos: produtosVendidos
         }
-        var token = localStorage.getItem("ALUNO_ITE")
 
         await axios.post(
             url,
@@ -49,17 +52,13 @@ const Vendas = () => {
                 return
             }
             if (retorno.status === 200) {
-                setErro(false);
-                setMensagem("Venda cadastrada com sucesso.");
-                setOpen(true);
+                setErro(false)
+                setMensagem("Venda cadastrada com sucesso.")
+                setOpen(true)
+                console.log("cadastrar venda: ", retorno)
                 setTimeout(() => {
-                    navigate('/listaVendas');
-                }, 750);
-                console.log(retorno)
-            } else {
-                setErro(true);
-                setMensagem("Conexão com Servidor Falhou")
-                setOpen(true);
+                    navigate('/listaVendas')
+                }, 750)
             }
         })
     }

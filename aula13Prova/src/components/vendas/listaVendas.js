@@ -33,6 +33,7 @@ const ListaVendas = () => {
     const listarVendas = async () => {
         var url = `https://backend-completo.vercel.app/app/venda`
         var token = localStorage.getItem("ALUNO_ITE")
+
         await axios.get(
             url,
             { headers: { Authorization: `Bearer ${token}` } }
@@ -45,11 +46,7 @@ const ListaVendas = () => {
             }
             if (retorno.status === 200) {
                 setVendas(retorno.data)
-                console.log(retorno)
-            } else {
-                setErro(true);
-                setMensagem("Conexão com Servidor Falhou")
-                setOpen(true);
+                console.log("Lista Vendas", retorno)
             }
         })
     }
@@ -76,6 +73,7 @@ const ListaVendas = () => {
             }
             if (retorno.status === 200) {
                 setErro(false);
+                console.log("Excluir Produto", retorno)
                 setMensagem("Venda excluída com sucesso.");
                 setOpen(true);
                 listarVendas();
