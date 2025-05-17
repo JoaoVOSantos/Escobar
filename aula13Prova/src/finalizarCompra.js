@@ -14,13 +14,20 @@ import {
     ListItemText,
     Avatar,
     Divider,
+    Snackbar,
+    Alert,
 } from "@mui/material";
 
 const FinalizarCompra = () => {
-    const navigate = useNavigate();
+
     var [nomeCliente, setNomeCliente] = useState("");
     var [dataAtual, setDataAtual] = useState("");
     var [produtos, setProdutos] = useState([]);
+
+    const navigate = useNavigate();
+    const [mensagem, setMensagem] = useState("")
+    const [open, setOpen] = useState(false)
+    const [erro, setErro] = useState(false)
 
     useEffect(() => {
         const hoje = new Date();
@@ -36,7 +43,9 @@ const FinalizarCompra = () => {
 
     const finalizarCompra = async () => {
         if (!nomeCliente) {
-            alert("Por favor, insira o nome do cliente.");
+            setErro(true)
+            setMensagem("Digite o Nome do Cliente");
+            setOpen(true)
             return
         }
 
@@ -54,21 +63,28 @@ const FinalizarCompra = () => {
             { headers: { Authorization: `Bearer ${token}` } }
         ).then(retorno => {
             if (retorno.data.error) {
-                alert(retorno.data.error)
-                return
+                setErro(true);
+                setMensagem(retorno.data.error);
+                setOpen(true);
             }
             if (retorno.status === 200) {
-                alert("Compra finalizada com sucesso!");
+                setErro(false)
+                setMensagem("Venda finalizada com sucesso.")
+                setOpen(true)
                 localStorage.removeItem("COMPRAS");
                 setProdutos([]);
                 setTimeout(() => {
                     navigate('/');
-                }, 750);
+                }, 1500);
                 console.log(retorno)
             }
         })
 
 
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     return (
@@ -144,6 +160,20 @@ const FinalizarCompra = () => {
                     </Box>
                 </Paper>
             </Box>
+            <Snackbar
+                open={open}
+                autoHideDuration={2500}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            >
+                <Alert
+                    onClose={handleClose}
+                    severity={erro ? "error" : "success"}
+                    sx={{ width: "100%" }}
+                >
+                    {mensagem}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };
